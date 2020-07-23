@@ -1,24 +1,41 @@
 DROP TABLE LIST_STORY;
 DROP TABLE STORY_GENRE;
 DROP TABLE PERSON_GENRE;
+DROP TABLE STORY_TAG;
 DROP TABLE LIST;
 DROP TABLE GENRE;
-DROP TABLE PERSON;
+DROP TABLE CHAPTER;
 DROP TABLE STORY;
-
-CREATE TABLE STORY(
-	StoryID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
-	Title VARCHAR(100) NOT NULL,
-	Grade INTEGER DEFAULT 0,
-	Description VARCHAR(300) NOT NULL
-);
+DROP TABLE PERSON;
+DROP TABLE TAG;
 
 CREATE TABLE PERSON (
 	PersonID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
 	Username VARCHAR(100) UNIQUE NOT NULL,
 	Password VARCHAR(50) NOT NULL,
-	Email VARCHAR(400) UNIQUE NOT NULL,
-	Description VARCHAR(200)
+	Email VARCHAR(400) UNIQUE NOT NULL
+);
+
+CREATE TABLE STORY(
+	StoryID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
+	AuthorId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES PERSON(PersonID) ON DELETE CASCADE NOT NULL,
+	Title VARCHAR(100) NOT NULL,
+	Grade INTEGER DEFAULT 0 NOT NULL,
+	Description VARCHAR(300),
+	Finished INTEGER DEFAULT 0
+);
+
+CREATE TABLE CHAPTER(
+	ChapterID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
+	StoryId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES STORY(StoryID) ON DELETE CASCADE NOT NULL,
+	Name VARCHAR(30) NOT NULL,
+	ChapterNumber INTEGER NOT NULL,
+	Content NVARCHAR(MAX)
+);
+
+CREATE TABLE TAG(
+	TagID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
+	Name VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE LIST (
@@ -47,25 +64,43 @@ CREATE TABLE STORY_GENRE(
 
 CREATE TABLE LIST_STORY(
 	ListId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES LIST(ListID) ON DELETE CASCADE,
-	StoryId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES STORY(StoryID) ON DELETE CASCADE,
+	StoryId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES STORY(StoryID),
 	CONSTRAINT ListStoryID PRIMARY KEY (ListId, StoryId)
+);
+
+CREATE TABLE STORY_TAG(
+	StoryId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES STORY(StoryID) ON DELETE CASCADE,
+	TagId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES TAG(TagID) ON DELETE CASCADE,
+	CONSTRAINT StoryTagID PRIMARY KEY (StoryId, TagId)
 );
 
 
 
+INSERT INTO PERSON (PersonID, Username, Password, Email) VALUES 
+('303e12a2-b66d-4e05-8a20-2abb9f7a934e', 'person username', 'password1', 'person@gmail.com');
+INSERT INTO PERSON (PersonID, Username, Password, Email) VALUES 
+('3ffa1a8f-0c4a-4ffa-9894-b4f7a9894eb6', 'person2 username', 'password2','person2@gmail.com');
+INSERT INTO PERSON (PersonID, Username, Password, Email) VALUES 
+('443d3edd-1fa6-4694-85bf-ba73c43b3ace', 'person3 username', 'password3','person3@gmail.com');
 
-INSERT INTO STORY (StoryID,Title,Description) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'Some Story Title', 'Some Story Description');
-INSERT INTO STORY (StoryID,Title,Description) VALUES ('ec949e04-801b-41f7-b161-ed243fc83880', 'Some Story2 Title', 'Some Story2 Description');
-INSERT INTO STORY (StoryID,Title,Description) VALUES ('f811efa6-3f87-45f7-81f5-ff94656117f6', 'Some Story3 Title', 'Some Story3 Description');
 
 
 
-INSERT INTO PERSON (PersonID, Username, Password, Email, Description) VALUES 
-('303e12a2-b66d-4e05-8a20-2abb9f7a934e', 'person username', 'password1', 'person@gmail.com', 'This is persons description');
-INSERT INTO PERSON (PersonID, Username, Password, Email, Description) VALUES 
-('3ffa1a8f-0c4a-4ffa-9894-b4f7a9894eb6', 'person2 username', 'password2','person2@gmail.com', 'This is persons2 description');
-INSERT INTO PERSON (PersonID, Username, Password, Email, Description) VALUES 
-('443d3edd-1fa6-4694-85bf-ba73c43b3ace', 'person3 username', 'password3','person3@gmail.com', 'This is persons3 description');
+INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', '303e12a2-b66d-4e05-8a20-2abb9f7a934e', 'Some Story Title', 'Some Story Description');
+INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('ec949e04-801b-41f7-b161-ed243fc83880', '303e12a2-b66d-4e05-8a20-2abb9f7a934e', 'Some Story2 Title', 'Some Story2 Description');
+INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('f811efa6-3f87-45f7-81f5-ff94656117f6', '3ffa1a8f-0c4a-4ffa-9894-b4f7a9894eb6', 'Some Story3 Title', 'Some Story3 Description');
+
+
+
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber, Content) VALUES ('f2b0ed68-a27d-4d01-9293-045e27a0cf96', '2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'Chapter 1', 1, 'First Chapter Content');
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber, Content) VALUES ('0863a81d-4105-4617-919c-a66bce5f3160', '2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'Chapter 2', 2, 'Second Chapter Content');
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber, Content) VALUES ('f1c92579-1e90-4d3d-96c3-5cd92c2004d1', '2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'Chapter 3', 3, 'Third Chapter Content');
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber, Content) VALUES ('d73a7c51-c3bf-4b17-96ae-3643ab73a315', '2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'Chapter 4', 4, 'Fourth Chapter Content');
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('d605c02a-d52c-4299-80de-28ff45a38f68', '2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'Chapter 5', 5);
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber, Content) VALUES ('b9c1048d-58c1-41d0-80cf-1da575764393', 'ec949e04-801b-41f7-b161-ed243fc83880', 'Intro', 0, 'this is the intro');
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('84e0a8d4-03c6-4a2b-8755-0d4441114ff1', 'ec949e04-801b-41f7-b161-ed243fc83880', 'In The Beggining', 1);
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('8338a4ba-15ee-4950-8898-088527457a47', 'ec949e04-801b-41f7-b161-ed243fc83880', 'First Challenge', 2);
+INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('3115b2f6-520c-4d32-8abc-35d9ee5be03c', 'ec949e04-801b-41f7-b161-ed243fc83880', 'Ending', 3);
 
 
 
@@ -116,10 +151,33 @@ INSERT INTO STORY_GENRE (StoryId, GenreId) VALUES ('EC949E04-801B-41F7-B161-ED24
 INSERT INTO STORY_GENRE (StoryId, GenreId) VALUES ('EC949E04-801B-41F7-B161-ED243FC83880', '69A36F75-27D5-4593-AEBA-B5093908AB8D');
 INSERT INTO STORY_GENRE (StoryId, GenreId) VALUES ('F811EFA6-3F87-45F7-81F5-FF94656117F6', '2B79AD50-B120-4B79-87AC-ECEE18EBB95F');
 
-
+  
 
 
 INSERT INTO LIST_STORY (ListId, StoryId) VALUES ('6E2D4B8E-C3EE-4B44-8B0D-1C36C6F0A817', '2C3B5F06-21D3-4D94-8FF8-6D44B6CAACE8');
 INSERT INTO LIST_STORY (ListId, StoryId) VALUES ('6E2D4B8E-C3EE-4B44-8B0D-1C36C6F0A817', 'EC949E04-801B-41F7-B161-ED243FC83880');
 INSERT INTO LIST_STORY (ListId, StoryId) VALUES ('6E2D4B8E-C3EE-4B44-8B0D-1C36C6F0A817', 'F811EFA6-3F87-45F7-81F5-FF94656117F6');
 INSERT INTO LIST_STORY (ListId, StoryId) VALUES ('169BE589-F979-4D5F-A7AC-70E79FA11435', '2C3B5F06-21D3-4D94-8FF8-6D44B6CAACE8');
+
+
+
+
+INSERT INTO TAG (TagID, Name) VALUES ('edc38b6e-9c40-448d-8edd-524fbc7ecb78', 'autumn');
+INSERT INTO TAG (TagID, Name) VALUES ('0fbcf65a-2f1f-498a-84e3-cff18c26d31c', 'winter');
+INSERT INTO TAG (TagID, Name) VALUES ('5b0c5929-76c2-483f-82f6-f2ba9bf9bd2f', 'spring');
+INSERT INTO TAG (TagID, Name) VALUES ('f95bb724-c85c-4bd2-a702-2c7a77006c71', 'summer');
+INSERT INTO TAG (TagID, Name) VALUES ('5837631f-7165-4edc-bebc-591cccdef6c5', 'love');
+INSERT INTO TAG (TagID, Name) VALUES ('bee59e52-1a06-4708-9ec1-1874d1cc0f38', 'thieves');
+INSERT INTO TAG (TagID, Name) VALUES ('58e91353-f388-4883-bfce-5a251781488f', 'music');
+INSERT INTO TAG (TagID, Name) VALUES ('e7c368e5-6919-481c-a985-95752749b4fa', 'vampire');
+INSERT INTO TAG (TagID, Name) VALUES ('2ee7d4e9-5d31-44f3-9749-c3003c9deb7e', 'school');
+INSERT INTO TAG (TagID, Name) VALUES ('1e822bf5-5423-46a1-a653-e32f647357ca', 'college');
+
+
+
+
+INSERT INTO STORY_TAG (StoryId, TagId) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'edc38b6e-9c40-448d-8edd-524fbc7ecb78');
+INSERT INTO STORY_TAG (StoryId, TagId) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', '2ee7d4e9-5d31-44f3-9749-c3003c9deb7e');
+INSERT INTO STORY_TAG (StoryId, TagId) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', '5837631f-7165-4edc-bebc-591cccdef6c5');
+INSERT INTO STORY_TAG (StoryId, TagId) VALUES ('ec949e04-801b-41f7-b161-ed243fc83880', '1e822bf5-5423-46a1-a653-e32f647357ca');
+INSERT INTO STORY_TAG (StoryId, TagId) VALUES ('ec949e04-801b-41f7-b161-ed243fc83880', '0fbcf65a-2f1f-498a-84e3-cff18c26d31c');
