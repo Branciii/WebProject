@@ -1,0 +1,31 @@
+input{
+    height : 50px;
+    border : 1px solid white;
+    border-radius : 20px;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    padding-left : 15px;
+    padding-right : 15px;
+    background: transparent;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+    border : 1px solid white;
+    border-radius : 10px;
+    padding-left : 20px;
+    padding-right : 20px;
+}
+
+button:hover,
+button:focus,
+button:active {
+  background: #fff;
+  color: #000;
+  transition: all 0.5s ease-in;
+}

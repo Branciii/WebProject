@@ -1,0 +1,11 @@
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\bin\Debug\Stories.Service.Common.dll
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\bin\Debug\Stories.Service.Common.pdb
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.csprojAssemblyReference.cache
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.csproj.CoreCompileInputs.cache
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.dll
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.pdb
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\bin\Debug\Stories.Model.dll
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\bin\Debug\Stories.Model.Common.dll
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\bin\Debug\Stories.Model.pdb
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\bin\Debug\Stories.Model.Common.pdb
+C:\Users\Branka\source\repos\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.csproj.CopyComplete

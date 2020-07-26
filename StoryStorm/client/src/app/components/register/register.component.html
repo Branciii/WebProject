@@ -1,0 +1,34 @@
+<section class = "bg-light" style = "padding-top : 100px">
+    <div class="container pt-5 bg-white">
+        <div class="row justify-content-center">
+        <div class="col-6 border my-5" style = "box-sizing:border-box; background : rgba(0,0,0,0.5)">
+            <form [formGroup] = "registerForm" (ngSubmit)="onSubmit()">
+                <div class="row mb-3"><h1 class = "ml-3 mt-1 mb-4 text-white lead display-4">Registration Form</h1></div>
+                <div class="form-group">
+                    <label for="Username" style = "color : white">Username</label>
+                    <input type="text" class="form-control" formControlName="Username" placeholder = "Enter username" >
+                </div>
+                <div class="form-group">
+                    <label for="Email" style = "color : white">Email address</label>
+                    <input type="text" class="form-control" formControlName="Email" placeholder = "Enter email" >
+                </div>
+                <div class="form-group">
+                    <label for="Password" style = "color : white">Password</label>
+                    <input type="password" class="form-control" formControlName="Password" placeholder = "Password" >
+                </div>
+                <!--
+                    <div class="form-group">
+                    <label for="password" style = "color : white">Confirm Password</label>
+                    <input type="password" class="form-control" placeholder = "Confirm Password" >
+                </div>
+                -->
+                <div class="row pb-4 justify-content-end pr-3 pt-2">
+                    <button type="submit" class="btn">Sign up</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</section>
+      
+  
