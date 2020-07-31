@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Credentials, UserService } from '../../services/user.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -15,16 +15,16 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   ngOnInit() {
-    console.log("on init");
+    localStorage.clear();
     this.registerForm = new FormGroup({
-      Username: new FormControl(null, [Validators.required]),
       Email: new FormControl(null, [Validators.required, Validators.email]),
-      Password: new FormControl(null, [Validators.required])
+      Password: new FormControl(null, [Validators.required]),
+      ConfirmPassword: new FormControl(null, [Validators.required])
     });
   }
 
   onSubmit() {
-    console.log("on submit");
+    //console.log("on submit");
     let value: any = this.registerForm.value;
 
     this.userService.register(value)

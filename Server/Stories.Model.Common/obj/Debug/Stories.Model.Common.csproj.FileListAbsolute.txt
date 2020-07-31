@@ -1,6 +1,0 @@
-C:\Users\Branka\source\repos\Server\Stories.Model.Common\bin\Debug\Stories.Model.Common.dll
-C:\Users\Branka\source\repos\Server\Stories.Model.Common\bin\Debug\Stories.Model.Common.pdb
-C:\Users\Branka\source\repos\Server\Stories.Model.Common\obj\Debug\Stories.Model.Common.csprojAssemblyReference.cache
-C:\Users\Branka\source\repos\Server\Stories.Model.Common\obj\Debug\Stories.Model.Common.csproj.CoreCompileInputs.cache
-C:\Users\Branka\source\repos\Server\Stories.Model.Common\obj\Debug\Stories.Model.Common.dll
-C:\Users\Branka\source\repos\Server\Stories.Model.Common\obj\Debug\Stories.Model.Common.pdb

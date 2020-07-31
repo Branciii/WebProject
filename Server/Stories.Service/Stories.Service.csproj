@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{27B2F057-A9A7-4633-9FA4-AFEEFF282C4E}</ProjectGuid>
+    <ProjectGuid>{F9B2097E-5E47-410B-B8F7-C2A790A49265}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Stories.Service</RootNamespace>
@@ -54,25 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ServiceDIModule.cs" />
-    <Compile Include="StoryService.cs" />
-    <Compile Include="UserService.cs" />
+    <Compile Include="GenreService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceDIModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stories.Model\Stories.Model.csproj">
-      <Project>{a58456d4-8bdb-456c-add3-9e3f2f34d8d7}</Project>
+      <Project>{3b4381e5-791a-4da5-bd90-108190c7f40e}</Project>
       <Name>Stories.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stories.Repository.Common\Stories.Repository.Common.csproj">
-      <Project>{48ed2dda-847c-4526-8831-627056e95488}</Project>
+      <Project>{70a853d5-e928-4163-91dc-e02b9c7b9d2e}</Project>
       <Name>Stories.Repository.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stories.Service.Common\Stories.Service.Common.csproj">
-      <Project>{f38c6768-51b5-4c7f-8d94-11e5a8593dd7}</Project>
+      <Project>{948efc31-1959-42db-87f9-f85c4f8bb2f5}</Project>
       <Name>Stories.Service.Common</Name>
     </ProjectReference>
   </ItemGroup>

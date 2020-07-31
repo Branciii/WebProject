@@ -1,45 +1,47 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using Autofac;
 using Autofac.Integration.WebApi;
-using Stories.WebApi.Controllers;
-using Stories.WebApi.Models;
+using Stories.WebAPI.Controllers;
+using Stories.WebAPI.Models;
 using Stories.Service;
 using Stories.Repository;
 using Stories.Model;
 
-namespace Stories.WebApi
+namespace Stories.WebAPI
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
+            AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterType<UserController>();
-            containerBuilder.RegisterType<StoryController>();
+            containerBuilder.RegisterType<GenreController>();
             containerBuilder.RegisterModule<ServiceDIModule>();
             containerBuilder.RegisterModule<RepositoryDIModule>();
 
             /*automapper:*/
-            containerBuilder.RegisterType<UserModel>().AsSelf();
-            containerBuilder.RegisterType<StoryModel>().AsSelf();
+            containerBuilder.RegisterType<GenreModel>().AsSelf();
 
-            containerBuilder.RegisterType<User>().AsSelf();
-            containerBuilder.RegisterType<Story>().AsSelf();
-            
+            containerBuilder.RegisterType<Genre>().AsSelf();
+
 
             containerBuilder.Register(context => new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<User, UserModel>().ReverseMap();
-                cfg.CreateMap<Story, StoryModel>().ReverseMap();
+                cfg.CreateMap<Genre, GenreModel>().ReverseMap();
 
             })).AsSelf().SingleInstance();
 

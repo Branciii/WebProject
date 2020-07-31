@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User, UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,11 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userService: UserService) { }
+
+  isLoggedIn : boolean;
 
   ngOnInit() {
+    if (localStorage.getItem("userToken") != null){
+      this.isLoggedIn = true;
+    }
+    else{
+      this.isLoggedIn = false;
+    }
   }
-
-  
 
 }

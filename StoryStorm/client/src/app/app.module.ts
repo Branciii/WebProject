@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppInterceptor } from './app.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
+import { GenreComponent } from './components/genre/genre.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,9 @@ import { AboutComponent } from './components/about/about.component';
     LoginComponent,
     NavBarComponent,
     RegisterComponent,
-    AboutComponent
+    AboutComponent,
+    GenreComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,11 @@ import { AboutComponent } from './components/about/about.component';
     ToastrModule.forRoot(),
     CollapseModule.forRoot(),
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AppInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

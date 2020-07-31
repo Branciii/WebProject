@@ -12,8 +12,7 @@ namespace Stories.Service
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<UserService>().As<IUserService>().InstancePerDependency();
-            builder.RegisterType<StoryService>().As<IStoryService>().InstancePerDependency();
+            builder.RegisterType<GenreService>().As<IGenreService>().InstancePerDependency();
         }
     }
 }

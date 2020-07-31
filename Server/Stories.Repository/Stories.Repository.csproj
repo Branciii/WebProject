@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F3B748C8-000E-41DC-A7B7-605D8205D5F6}</ProjectGuid>
+    <ProjectGuid>{3DBFD090-B15B-46B4-BDC3-35C23B10A44D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Stories.Repository</RootNamespace>
@@ -54,23 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RepositoryDIModule.cs" />
-    <Compile Include="StoryRepository.cs" />
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="GenreRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="RepositoryDIModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stories.Model\Stories.Model.csproj">
-      <Project>{a58456d4-8bdb-456c-add3-9e3f2f34d8d7}</Project>
+      <Project>{3b4381e5-791a-4da5-bd90-108190c7f40e}</Project>
       <Name>Stories.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stories.Repository.Common\Stories.Repository.Common.csproj">
-      <Project>{48ed2dda-847c-4526-8831-627056e95488}</Project>
+      <Project>{70a853d5-e928-4163-91dc-e02b9c7b9d2e}</Project>
       <Name>Stories.Repository.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A58456D4-8BDB-456C-ADD3-9E3F2F34D8D7}</ProjectGuid>
+    <ProjectGuid>{3B4381E5-791A-4DA5-BD90-108190C7F40E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Stories.Model</RootNamespace>
@@ -41,15 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StoryModel.cs" />
-    <Compile Include="UserModel.cs" />
+    <Compile Include="GenreModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Stories.Model.Common\Stories.Model.Common.csproj">
-      <Project>{844a172c-a08f-4f72-a620-3d5fb416b884}</Project>
-      <Name>Stories.Model.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

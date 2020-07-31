@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F38C6768-51B5-4C7F-8D94-11E5A8593DD7}</ProjectGuid>
+    <ProjectGuid>{948EFC31-1959-42DB-87F9-F85C4F8BB2F5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Stories.Service.Common</RootNamespace>
@@ -41,13 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IGenreService.cs" />
     <Compile Include="IStoryService.cs" />
-    <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stories.Model\Stories.Model.csproj">
-      <Project>{a58456d4-8bdb-456c-add3-9e3f2f34d8d7}</Project>
+      <Project>{3b4381e5-791a-4da5-bd90-108190c7f40e}</Project>
       <Name>Stories.Model</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,24 +1,16 @@
 DROP TABLE LIST_STORY;
 DROP TABLE STORY_GENRE;
-DROP TABLE PERSON_GENRE;
+DROP TABLE USER_GENRE;
 DROP TABLE STORY_TAG;
 DROP TABLE LIST;
 DROP TABLE GENRE;
 DROP TABLE CHAPTER;
 DROP TABLE STORY;
-DROP TABLE PERSON;
 DROP TABLE TAG;
-
-CREATE TABLE PERSON (
-	PersonID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
-	Username VARCHAR(100) UNIQUE NOT NULL,
-	Password VARCHAR(50) NOT NULL,
-	Email VARCHAR(400) UNIQUE NOT NULL
-);
 
 CREATE TABLE STORY(
 	StoryID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
-	AuthorId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES PERSON(PersonID) ON DELETE CASCADE NOT NULL,
+	AuthorId nvarchar(128) FOREIGN KEY REFERENCES dbo.AspNetUsers(Id) ON DELETE CASCADE NOT NULL,
 	Title VARCHAR(100) NOT NULL,
 	Grade INTEGER DEFAULT 0 NOT NULL,
 	Description VARCHAR(300),
@@ -40,7 +32,7 @@ CREATE TABLE TAG(
 
 CREATE TABLE LIST (
 	ListID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
-	PersonId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES PERSON(PersonID) ON DELETE CASCADE NOT NULL,
+	UserId nvarchar(128) FOREIGN KEY REFERENCES dbo.AspNetUsers(Id) ON DELETE CASCADE NOT NULL,
 	Name VARCHAR(100) NOT NULL,
 	Description VARCHAR(250)
 );
@@ -50,10 +42,10 @@ CREATE TABLE GENRE (
 	Name VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE PERSON_GENRE(
-	PersonId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES PERSON(PersonID) ON DELETE CASCADE,
+CREATE TABLE USER_GENRE(
+	UserId nvarchar(128) FOREIGN KEY REFERENCES dbo.AspNetUsers(Id) ON DELETE CASCADE,
 	GenreId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES GENRE(GenreID) ON DELETE CASCADE,
-	CONSTRAINT PersonGenreID PRIMARY KEY (PersonId,GenreId)
+	CONSTRAINT UserGenreID PRIMARY KEY (UserId,GenreId)
 );
 
 CREATE TABLE STORY_GENRE(
@@ -76,19 +68,9 @@ CREATE TABLE STORY_TAG(
 
 
 
-INSERT INTO PERSON (PersonID, Username, Password, Email) VALUES 
-('303e12a2-b66d-4e05-8a20-2abb9f7a934e', 'person username', 'password1', 'person@gmail.com');
-INSERT INTO PERSON (PersonID, Username, Password, Email) VALUES 
-('3ffa1a8f-0c4a-4ffa-9894-b4f7a9894eb6', 'person2 username', 'password2','person2@gmail.com');
-INSERT INTO PERSON (PersonID, Username, Password, Email) VALUES 
-('443d3edd-1fa6-4694-85bf-ba73c43b3ace', 'person3 username', 'password3','person3@gmail.com');
-
-
-
-
-INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', '303e12a2-b66d-4e05-8a20-2abb9f7a934e', 'Some Story Title', 'Some Story Description');
-INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('ec949e04-801b-41f7-b161-ed243fc83880', '303e12a2-b66d-4e05-8a20-2abb9f7a934e', 'Some Story2 Title', 'Some Story2 Description');
-INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('f811efa6-3f87-45f7-81f5-ff94656117f6', '3ffa1a8f-0c4a-4ffa-9894-b4f7a9894eb6', 'Some Story3 Title', 'Some Story3 Description');
+INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', '2a97eeab-0688-401f-82aa-fafd09346531', 'Some Story Title', 'Some Story Description');
+INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('ec949e04-801b-41f7-b161-ed243fc83880', '2a97eeab-0688-401f-82aa-fafd09346531', 'Some Story2 Title', 'Some Story2 Description');
+INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('f811efa6-3f87-45f7-81f5-ff94656117f6', '337683f5-37e1-4245-8775-e4b32aef83b6', 'Some Story3 Title', 'Some Story3 Description');
 
 
 
@@ -105,10 +87,10 @@ INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('3115b2f6-
 
 
 
-INSERT INTO LIST (ListID, PersonId, Name, Description) VALUES 
-('169be589-f979-4d5f-a7ac-70e79fa11435', '303e12a2-b66d-4e05-8a20-2abb9f7a934e', 'Best Scary Stories', 'These are best stories');
-INSERT INTO LIST (ListID, PersonId, Name) VALUES 
-('6e2d4b8e-c3ee-4b44-8b0d-1c36c6f0a817', '443d3edd-1fa6-4694-85bf-ba73c43b3ace', 'Best Scary Stories2');
+INSERT INTO LIST (ListID, UserId, Name, Description) VALUES 
+('169be589-f979-4d5f-a7ac-70e79fa11435', '337683f5-37e1-4245-8775-e4b32aef83b6', 'Best Scary Stories', 'These are best stories');
+INSERT INTO LIST (ListID, UserId, Name) VALUES 
+('6e2d4b8e-c3ee-4b44-8b0d-1c36c6f0a817', '90fb65a3-adab-4f0c-899d-fbb5ecdefef0', 'Best Scary Stories2');
 
 
 
@@ -132,14 +114,14 @@ INSERT INTO GENRE (GenreID, Name) VALUES ('897b057d-8feb-4180-8468-f477650b98d6'
 
 
 
-INSERT INTO PERSON_GENRE (PersonId, GenreId) VALUES ('303e12a2-b66d-4e05-8a20-2abb9f7a934e', '26c15502-acca-4d8a-8a75-124918f3cb98');
-INSERT INTO PERSON_GENRE (PersonId, GenreId) VALUES ('303e12a2-b66d-4e05-8a20-2abb9f7a934e', '92621ec4-baec-48ef-917c-a38b27cbcceb');
-INSERT INTO PERSON_GENRE (PersonId, GenreId) VALUES ('303e12a2-b66d-4e05-8a20-2abb9f7a934e', '897b057d-8feb-4180-8468-f477650b98d6');
-INSERT INTO PERSON_GENRE (PersonId, GenreId) VALUES ('303e12a2-b66d-4e05-8a20-2abb9f7a934e', '228ac338-4cd8-4835-9c72-1db2b53adb04');
-INSERT INTO PERSON_GENRE (PersonId, GenreId) VALUES ('3FFA1A8F-0C4A-4FFA-9894-B4F7A9894EB6', '92621ec4-baec-48ef-917c-a38b27cbcceb');
-INSERT INTO PERSON_GENRE (PersonId, GenreId) VALUES ('3FFA1A8F-0C4A-4FFA-9894-B4F7A9894EB6', '34306c9a-58ef-498b-9da4-18620df40589');
-INSERT INTO PERSON_GENRE (PersonId, GenreId) VALUES ('443D3EDD-1FA6-4694-85BF-BA73C43B3ACE', '2b79ad50-b120-4b79-87ac-ecee18ebb95f');
-INSERT INTO PERSON_GENRE (PersonId, GenreId) VALUES ('443D3EDD-1FA6-4694-85BF-BA73C43B3ACE', 'b9354c75-f738-48d1-9638-6a8e807fdf04');
+INSERT INTO USER_GENRE (UserId, GenreId) VALUES ('90fb65a3-adab-4f0c-899d-fbb5ecdefef0', '26c15502-acca-4d8a-8a75-124918f3cb98');
+INSERT INTO USER_GENRE (UserId, GenreId) VALUES ('90fb65a3-adab-4f0c-899d-fbb5ecdefef0', '92621ec4-baec-48ef-917c-a38b27cbcceb');
+INSERT INTO USER_GENRE (UserId, GenreId) VALUES ('90fb65a3-adab-4f0c-899d-fbb5ecdefef0', '897b057d-8feb-4180-8468-f477650b98d6');
+INSERT INTO USER_GENRE (UserId, GenreId) VALUES ('90fb65a3-adab-4f0c-899d-fbb5ecdefef0', '228ac338-4cd8-4835-9c72-1db2b53adb04');
+INSERT INTO USER_GENRE (UserId, GenreId) VALUES ('2a97eeab-0688-401f-82aa-fafd09346531', '92621ec4-baec-48ef-917c-a38b27cbcceb');
+INSERT INTO USER_GENRE (UserId, GenreId) VALUES ('2a97eeab-0688-401f-82aa-fafd09346531', '34306c9a-58ef-498b-9da4-18620df40589');
+INSERT INTO USER_GENRE (UserId, GenreId) VALUES ('337683f5-37e1-4245-8775-e4b32aef83b6', '2b79ad50-b120-4b79-87ac-ecee18ebb95f');
+INSERT INTO USER_GENRE (UserId, GenreId) VALUES ('337683f5-37e1-4245-8775-e4b32aef83b6', 'b9354c75-f738-48d1-9638-6a8e807fdf04');
 
 
 
