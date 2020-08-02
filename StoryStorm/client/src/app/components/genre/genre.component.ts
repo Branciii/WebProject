@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GenreService } from '../../services/genre.service';
+import { Observable } from 'rxjs';
+import { Genre } from '../../classes/genre';
 
 @Component({
   selector: 'app-genre',
@@ -8,12 +10,18 @@ import { GenreService } from '../../services/genre.service';
 })
 export class GenreComponent implements OnInit {
 
-  constructor(public genreService : GenreService) { }
+  allGenres: Observable<Genre[]>;  
+  allEmployees: Observable<Genre[]>;  
+
+  constructor(private genreService : GenreService) { }
 
   ngOnInit() {
+    this.allEmployees = this.genreService.getAllEmployee();
+
+    /*
     this.genreService.getGenres()
       .subscribe(data => {
-        console.log(data);
-      })
+        console.log(Object.values(data));
+      })*/
   }
 }

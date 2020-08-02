@@ -9,6 +9,7 @@ using Stories.WebAPI.Models;
 using AutoMapper;
 using Stories.Service.Common;
 using Stories.Model;
+using Microsoft.AspNet.Identity;
 
 namespace Stories.WebAPI.Controllers
 {
@@ -37,6 +38,37 @@ namespace Stories.WebAPI.Controllers
             List<Genre> Genres = Mapper.Map<List<Genre>>(GenreList);
 
             return Request.CreateResponse(HttpStatusCode.OK, Genres);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("api/getUsersGenres")]
+        public async Task<HttpResponseMessage> GetUsersGenresAsync()
+        {
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+
+            List<GenreModel> GenreList = await GenreService.GetUsersGenresAsync(UserId);
+            if (GenreList.Count() == 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            List<Genre> Genres = Mapper.Map<List<Genre>>(GenreList);
+
+            return Request.CreateResponse(HttpStatusCode.OK, Genres);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("api/postUsersGenre")]
+        public async Task<HttpResponseMessage> PostUsersGenreAsync(string genreName)
+        {
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+
+            if(await GenreService.PostUsersGenreAsync(UserId, genreName))
+            {
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            return Request.CreateResponse(HttpStatusCode.NotFound);
         }
     }
 }

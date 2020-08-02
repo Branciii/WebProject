@@ -10,5 +10,7 @@ namespace Stories.Service.Common
     public interface IGenreService
     {
         Task<List<GenreModel>> GetGenresAsync();
+        Task<List<GenreModel>> GetUsersGenresAsync(string UserId);
+        Task<bool> PostUsersGenreAsync(string UserId, string GenreName);
     }
 }

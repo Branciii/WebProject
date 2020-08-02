@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { tap, catchError} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Genre } from '../classes/genre';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +20,9 @@ export class GenreService {
     }
     return this.http.get(this.url + '/api/getGenres');
   }
+
+  getAllEmployee(): Observable<Genre[]> {  
+    return this.http.get<Genre[]>(this.url + '/api/getGenres');  
+  }  
+
 }

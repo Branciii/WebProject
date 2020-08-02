@@ -55,7 +55,8 @@ export class UserService {
   // /newUser
   register(credentials: User): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-    return this.http.post(this.url + '/api/Account/Register',  
+    if (credentials.Password == credentials.ConfirmPassword){
+      return this.http.post(this.url + '/api/Account/Register',  
     credentials, httpOptions).pipe(
       catchError(this.handleError.bind(this)),
       tap(
@@ -71,6 +72,10 @@ export class UserService {
         }
       ) 
     );
+    }
+    else{
+      this.showToaster("passwords don't match");
+    }
   }
 
   login(credentials: User) {

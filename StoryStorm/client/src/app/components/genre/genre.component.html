@@ -1,1 +1,8 @@
-<p>genre works!</p>
+<div class="container">
+  <h1>Pick your favourite genres!</h1>  
+  <div class="row" id="final">
+    <div class="col-4" *ngFor="let item of allEmployees | async">
+      <div class="btn mt-5" id = "circle">{{item.Name}}</div>
+    </div>
+  </div>    
+</div>  

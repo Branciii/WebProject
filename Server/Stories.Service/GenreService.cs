@@ -23,5 +23,15 @@ namespace Stories.Service
         {
             return await GenreRepository.GetGenresAsync();
         }
+
+        public async Task<List<GenreModel>> GetUsersGenresAsync(string UserId)
+        {
+            return await GenreRepository.GetUsersGenresAsync(UserId);
+        }
+
+        public async Task<bool> PostUsersGenreAsync(string UserId, string GenreName)
+        {
+            return await GenreRepository.PostUsersGenreAsync(UserId, GenreName);
+        }
     }
 }

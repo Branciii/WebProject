@@ -1,0 +1,26 @@
+#circle {
+    padding : 20px 20px 20px 20px;
+    height: 150px;
+    width: 150px;
+    background-color: rgb(230, 72, 72);
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 100px;
+    opacity : 0.8;
+    color : white;
+    font-weight: bold ;
+    font-size: 20px ;
+  }
+
+#circle:hover,
+#circle:focus,
+#circle:active,
+#circle:target {
+    background: rgb(238, 30, 30);
+    color: #000;
+    transition: all 0.5s ease-in;
+    font-weight: bolder ;
+  }
+
+  
