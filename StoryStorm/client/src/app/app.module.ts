@@ -16,6 +16,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { GenreComponent } from './components/genre/genre.component';
 import { HomeComponent } from './components/home/home.component';
+import { WriteComponent } from './components/write/write.component';
+import { ReadComponent } from './components/read/read.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HomeComponent } from './components/home/home.component';
     RegisterComponent,
     AboutComponent,
     GenreComponent,
-    HomeComponent
+    HomeComponent,
+    WriteComponent,
+    ReadComponent
   ],
   imports: [
     BrowserModule,

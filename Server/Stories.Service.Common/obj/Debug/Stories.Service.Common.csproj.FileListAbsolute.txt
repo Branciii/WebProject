@@ -7,3 +7,14 @@ C:\Users\Branka\Desktop\Server\Server\Stories.Service.Common\obj\Debug\Stories.S
 C:\Users\Branka\Desktop\Server\Server\Stories.Service.Common\bin\Debug\Stories.Model.dll
 C:\Users\Branka\Desktop\Server\Server\Stories.Service.Common\bin\Debug\Stories.Model.pdb
 C:\Users\Branka\Desktop\Server\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.csproj.CopyComplete
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\bin\Debug\Stories.Service.Common.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\bin\Debug\Stories.Service.Common.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\bin\Debug\Stories.Model.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\bin\Debug\Stories.Model.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.csprojAssemblyReference.cache
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.csproj.CopyComplete
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\obj\Debug\Stories.Service.Common.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\bin\Debug\Stories.Model.Common.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Service.Common\bin\Debug\Stories.Model.Common.pdb

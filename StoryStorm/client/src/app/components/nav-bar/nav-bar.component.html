@@ -1,4 +1,4 @@
-<nav id = "navbar1" class="navbar navbar-expand-lg navbar-light fixed-top py-4">
+<nav id = "navbar1" class="navbar navbar-expand-lg navbar-light py-4">
     <i class="fas fa-atlas fa-4x fa-rotate-270"></i>
     <h1 class = "display-2 pl-5">StoryStorm</h1>
 
@@ -9,20 +9,24 @@
     <div class="collapse navbar-collapse" [collapse]="!isCollapsed" id="navbarSupportedContent">
         
         <ul id = "navbar-lett" class="navbar-nav ml-auto">
-            <li class="nav-item" *ngIf="!isLoggedIn">
-                <a routerLink = "" class="nav-link"><button (click)="isCollapsed = !isCollapsed" id = homeb>Home</button></a>
+            <li class="nav-item" *ngIf="!userService.isLoggedIn">
+                <a routerLink = "" class="nav-link"><button (click)="isCollapsed = !isCollapsed;" id = aboutb>About</button></a>
             </li>
 
-            <li class="nav-item" *ngIf="!isLoggedIn">
+            <li class="nav-item" *ngIf="!userService.isLoggedIn">
                 <a routerLink = "/login" class="nav-link"><button (click)="isCollapsed = !isCollapsed" id = loginb>Login</button></a>
             </li>                    
 
-            <li class="nav-item" *ngIf="!isLoggedIn">
-                <a routerLink = "/register" class="nav-link"><button (click)="isCollapsed = !isCollapsed" id = registerb>Register</button></a>
+            <li class="nav-item" *ngIf="!userService.isLoggedIn">
+                <a routerLink = "/register" class="nav-link"><button (click)="isCollapsed = !isCollapsed;" id = registerb>Register</button></a>
             </li>  
 
-            <li class="nav-item" *ngIf="isLoggedIn">
-                <a routerLink = "/login" class="nav-link"><button (click)="isCollapsed = !isCollapsed; isLoggedIn = false; userService.logout()" id = logoutb>Log out</button></a>
+            <li class="nav-item" *ngIf="userService.isLoggedIn">
+                <a routerLink = "/write" class="nav-link"><button (click)="isCollapsed = !isCollapsed;" id = writeb>Write</button></a>
+            </li> 
+
+            <li class="nav-item" *ngIf="userService.isLoggedIn">
+                <a routerLink = "/login" class="nav-link"><button (click)="isCollapsed = !isCollapsed; userService.isLoggedIn = false; userService.logout()" id = logoutb>Log out</button></a>
             </li> 
         </ul>
     </div>

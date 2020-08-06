@@ -1,4 +1,3 @@
 export class Genre{  
-    Name: string;  
-    
+    Name: string;   
 }  

@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
     localStorage.clear();
     this.registerForm = new FormGroup({
       Email: new FormControl(null, [Validators.required, Validators.email]),
+      UserName: new FormControl(null, [Validators.required]),
       Password: new FormControl(null, [Validators.required]),
       ConfirmPassword: new FormControl(null, [Validators.required])
     });
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit {
 
     this.userService.register(value)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
       })
 
   }

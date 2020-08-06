@@ -4,14 +4,11 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { tap, catchError} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgForm } from '@angular/forms';
-
-import {Token} from '../classes/token';
 
 //export type User = { Username: string, Email: string, UserID: any };
 //export type Credentials = { Username: string, Email: string, Password: string };
 
-export type User = { Email : string, Password : string, ConfirmPassword? : string };
+export type User = { Email? : string, UserName : string, Password : string, ConfirmPassword? : string };
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +18,7 @@ export class UserService {
 
   private url : string = 'https://localhost:44374';  
 
-  public user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  public isLoggedIn : boolean;
 
   constructor(private http: HttpClient, public router: Router , private toastr: ToastrService) { }
 
@@ -52,7 +49,6 @@ export class UserService {
     this.toastr.error(message);
   }
 
-  // /newUser
   register(credentials: User): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
     if (credentials.Password == credentials.ConfirmPassword){
@@ -65,8 +61,9 @@ export class UserService {
           //this.router.navigate(['login']);
           this.userAuthentication(credentials).subscribe( (data : any)=>{
             localStorage.setItem('userToken',data.access_token);
-            //console.log(data.access_token);
+            console.log("this is the token received", data.access_token);
             console.log(localStorage.getItem('userToken'));
+            this.checkLogged();
             this.router.navigate(['genre']);
           })
         }
@@ -88,9 +85,19 @@ export class UserService {
   }
 
   userAuthentication(credentials: User) {
-    var data = "username=" + credentials.Email + "&password=" + credentials.Password + "&grant_type=password";
+    var data = "username=" + credentials.UserName + "&password=" + credentials.Password + "&grant_type=password";
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
     return this.http.post(this.url + '/token', data, { headers: reqHeader });
+  }
+
+  checkLogged() : void {
+    if (localStorage.getItem('userToken') != null){
+      this.isLoggedIn = true;
+    }
+    else{
+      console.log("user token is null", localStorage.getItem('userToken'));
+      this.isLoggedIn = false;
+    }
   }
   
   logout(): void {

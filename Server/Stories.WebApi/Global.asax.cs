@@ -30,18 +30,22 @@ namespace Stories.WebAPI
             var containerBuilder = new ContainerBuilder();
 
             containerBuilder.RegisterType<GenreController>();
+            containerBuilder.RegisterType<StoryController>();
             containerBuilder.RegisterModule<ServiceDIModule>();
             containerBuilder.RegisterModule<RepositoryDIModule>();
 
             /*automapper:*/
             containerBuilder.RegisterType<GenreModel>().AsSelf();
+            containerBuilder.RegisterType<StoryModel>().AsSelf();
 
             containerBuilder.RegisterType<Genre>().AsSelf();
+            containerBuilder.RegisterType<Story>().AsSelf();
 
 
             containerBuilder.Register(context => new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Genre, GenreModel>().ReverseMap();
+                cfg.CreateMap<Story, StoryModel>().ReverseMap();
 
             })).AsSelf().SingleInstance();
 

@@ -11,12 +11,12 @@ import { Genre } from '../../classes/genre';
 export class GenreComponent implements OnInit {
 
   allGenres: Observable<Genre[]>;  
-  allEmployees: Observable<Genre[]>;  
 
   constructor(private genreService : GenreService) { }
 
   ngOnInit() {
-    this.allEmployees = this.genreService.getAllEmployee();
+    this.allGenres = this.genreService.getGenres();
+    console.log(this.allGenres);
 
     /*
     this.genreService.getGenres()

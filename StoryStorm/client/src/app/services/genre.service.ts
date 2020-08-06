@@ -14,14 +14,11 @@ export class GenreService {
 
   private url : string = 'https://localhost:44374';  
 
-  getGenres(): Observable<any>  {
+
+  getGenres(): Observable<Genre[]> {
     if (localStorage.getItem("userToken")==null){
       this.router.navigate(['login']);
-    }
-    return this.http.get(this.url + '/api/getGenres');
-  }
-
-  getAllEmployee(): Observable<Genre[]> {  
+    }  
     return this.http.get<Genre[]>(this.url + '/api/getGenres');  
   }  
 

@@ -16,7 +16,7 @@ namespace Stories.Repository
         {
             List<GenreModel> GenreList = new List<GenreModel>();
 
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProjectSQL;Integrated Security=True";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
 
             string queryString =
                 "SELECT GenreID, Name FROM GENRE;";
@@ -117,7 +117,6 @@ namespace Stories.Repository
 
                 command =
                     new SqlCommand(queryString, connection);
-                await connection.OpenAsync();
 
                 reader = await command.ExecuteReaderAsync();
 

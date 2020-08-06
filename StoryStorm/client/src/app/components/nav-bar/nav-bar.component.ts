@@ -10,15 +10,8 @@ export class NavBarComponent implements OnInit {
 
   constructor(public userService: UserService) { }
 
-  isLoggedIn : boolean;
-
   ngOnInit() {
-    if (localStorage.getItem("userToken") != null){
-      this.isLoggedIn = true;
-    }
-    else{
-      this.isLoggedIn = false;
-    }
+    this.userService.checkLogged();
+    console.log(this.userService.isLoggedIn);
   }
-
 }

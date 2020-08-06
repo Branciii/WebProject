@@ -57,6 +57,7 @@
     <Compile Include="GenreRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryDIModule.cs" />
+    <Compile Include="StoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stories.Model\Stories.Model.csproj">

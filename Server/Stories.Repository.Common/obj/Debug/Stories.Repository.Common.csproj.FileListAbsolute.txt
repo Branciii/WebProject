@@ -7,3 +7,14 @@ C:\Users\Branka\Desktop\Server\Server\Stories.Repository.Common\obj\Debug\Storie
 C:\Users\Branka\Desktop\Server\Server\Stories.Repository.Common\obj\Debug\Stories.Repository.Common.csproj.CopyComplete
 C:\Users\Branka\Desktop\Server\Server\Stories.Repository.Common\obj\Debug\Stories.Repository.Common.dll
 C:\Users\Branka\Desktop\Server\Server\Stories.Repository.Common\obj\Debug\Stories.Repository.Common.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\bin\Debug\Stories.Repository.Common.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\bin\Debug\Stories.Repository.Common.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\bin\Debug\Stories.Model.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\bin\Debug\Stories.Model.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\obj\Debug\Stories.Repository.Common.csprojAssemblyReference.cache
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\obj\Debug\Stories.Repository.Common.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\obj\Debug\Stories.Repository.Common.csproj.CopyComplete
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\obj\Debug\Stories.Repository.Common.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\obj\Debug\Stories.Repository.Common.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\bin\Debug\Stories.Model.Common.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Repository.Common\bin\Debug\Stories.Model.Common.pdb

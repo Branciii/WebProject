@@ -9,4 +9,16 @@
     position:absolute;
     width: 100%;
 }
+
+#background_color{
+    background : rgb(207, 207, 255);
+    height: 760px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:absolute;
+    width: 100%;
+    z-index: -1;
+}
   

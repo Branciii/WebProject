@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Stories.Model.Common
 {
-    public class IGenreModel
+    public interface IGenreModel
     {
     }
 }

@@ -13,6 +13,7 @@ namespace Stories.Repository
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GenreRepository>().As<IGenreRepository>().InstancePerDependency();
+            builder.RegisterType<StoryRepository>().As<IStoryRepository>().InstancePerDependency();
         }
     }
 }

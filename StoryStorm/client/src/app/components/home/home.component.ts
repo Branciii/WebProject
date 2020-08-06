@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { StoryService } from 'src/app/services/story.service';
+import { GenreService } from '../../services/genre.service';
+import { Observable } from 'rxjs';
+import { Story } from '../../classes/story';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  recommendedStories: Observable<Story[]>;  
+
+  constructor(public storyService: StoryService) { }
 
   ngOnInit() {
+    
+    this.recommendedStories = this.storyService.getStories();
+    this.storyService.getStories()
+      .subscribe(data => {
+        console.log(data);
+      })
   }
-
 }

@@ -4,3 +4,12 @@ C:\Users\Branka\Desktop\Server\Server\Stories.Model\obj\Debug\Stories.Model.cspr
 C:\Users\Branka\Desktop\Server\Server\Stories.Model\obj\Debug\Stories.Model.csproj.CoreCompileInputs.cache
 C:\Users\Branka\Desktop\Server\Server\Stories.Model\obj\Debug\Stories.Model.dll
 C:\Users\Branka\Desktop\Server\Server\Stories.Model\obj\Debug\Stories.Model.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\bin\Debug\Stories.Model.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\bin\Debug\Stories.Model.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\obj\Debug\Stories.Model.csprojAssemblyReference.cache
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\obj\Debug\Stories.Model.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\obj\Debug\Stories.Model.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\obj\Debug\Stories.Model.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\bin\Debug\Stories.Model.Common.dll
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\bin\Debug\Stories.Model.Common.pdb
+C:\Users\Korisnik\Desktop\WebProject\Server\Stories.Model\obj\Debug\Stories.Model.csproj.CopyComplete
