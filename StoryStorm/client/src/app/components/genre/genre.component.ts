@@ -12,10 +12,13 @@ export class GenreComponent implements OnInit {
 
   allGenres: Observable<Genre[]>;  
 
+  GenreIDs: Array<string>;
+
   constructor(private genreService : GenreService) { }
 
   ngOnInit() {
     this.allGenres = this.genreService.getGenres();
+    this.GenreIDs = [];
     console.log(this.allGenres);
 
     /*
@@ -23,5 +26,10 @@ export class GenreComponent implements OnInit {
       .subscribe(data => {
         console.log(Object.values(data));
       })*/
+  }
+
+  addGenre(id:string){
+    this.GenreIDs.push(id);
+    console.log(this.GenreIDs);
   }
 }

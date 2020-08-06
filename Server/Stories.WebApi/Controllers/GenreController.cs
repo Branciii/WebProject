@@ -25,6 +25,7 @@ namespace Stories.WebAPI.Controllers
         }
 
 
+        /*
         [HttpGet]
         [Authorize]
         [Route("api/getGenres")]
@@ -38,6 +39,20 @@ namespace Stories.WebAPI.Controllers
             List<Genre> Genres = Mapper.Map<List<Genre>>(GenreList);
 
             return Request.CreateResponse(HttpStatusCode.OK, Genres);
+        }*/
+
+        [HttpGet]
+        [Authorize]
+        [Route("api/getGenres")]
+        public async Task<HttpResponseMessage> GetGenresAsync()
+        {
+            List<GenreModel> GenreList = await GenreService.GetGenresAsync();
+            if (GenreList.Count() == 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, GenreList);
         }
 
         [HttpGet]

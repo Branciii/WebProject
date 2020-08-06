@@ -8,7 +8,7 @@
     </div>
     <div class="row pt-3" id="final">
       <div class="col-3" *ngFor="let item of allGenres | async">
-        <div class="btn mt-5" id = "circle">{{item.Name}}</div>
+        <div class="btn mt-5 circle" (click)="addGenre(item.GenreID);" id = item.GenreID>{{item.Name}}</div>
       </div>
     </div>    
   </div>  

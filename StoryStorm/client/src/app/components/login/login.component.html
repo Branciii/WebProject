@@ -13,7 +13,7 @@
                         <input type="password" class="form-control" placeholder = "Password" formControlName="Password">
                     </div>
                     <div class="row pb-4 justify-content-end pr-3 pt-2">
-                        <button type="submit" class="btn">Sign in</button>
+                        <button type="submit" [disabled]="!loginForm.valid" class="btn">Sign in</button>
                     </div>
                 </form>
             </div>

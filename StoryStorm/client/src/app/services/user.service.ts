@@ -57,8 +57,6 @@ export class UserService {
         catchError(this.handleError.bind(this)),
         tap(
           () => {
-            //console.log("tap get token");
-            //this.router.navigate(['login']);
             this.userAuthentication(credentials).subscribe( (data : any)=>{
               localStorage.setItem('userToken',data.access_token);
               console.log("this is the token received", data.access_token);
@@ -86,7 +84,6 @@ export class UserService {
 
   userAuthentication(credentials: User) {
     var data = "username=" + credentials.UserName + "&password=" + credentials.Password + "&grant_type=password";
-    console.log('this is username sent', credentials.UserName);
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
     return this.http.post(this.url + '/token', data, { headers: reqHeader });
   }

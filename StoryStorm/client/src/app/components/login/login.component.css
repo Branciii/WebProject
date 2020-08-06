@@ -22,10 +22,14 @@ button {
     padding-right : 20px;
 }
 
-button:hover,
+button:hover:enabled,
 button:focus,
 button:active {
   background: #fff;
   color: #000;
   transition: all 0.5s ease-in;
+}
+
+button:hover:disabled{
+  color : white;
 }
