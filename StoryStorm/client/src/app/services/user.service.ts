@@ -53,21 +53,21 @@ export class UserService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
     if (credentials.Password == credentials.ConfirmPassword){
       return this.http.post(this.url + '/api/Account/Register',  
-    credentials, httpOptions).pipe(
-      catchError(this.handleError.bind(this)),
-      tap(
-        () => {
-          //console.log("tap get token");
-          //this.router.navigate(['login']);
-          this.userAuthentication(credentials).subscribe( (data : any)=>{
-            localStorage.setItem('userToken',data.access_token);
-            console.log("this is the token received", data.access_token);
-            this.checkLogged();
-            this.router.navigate(['genre']);
-          })
-        }
-      ) 
-    );
+      credentials, httpOptions).pipe(
+        catchError(this.handleError.bind(this)),
+        tap(
+          () => {
+            //console.log("tap get token");
+            //this.router.navigate(['login']);
+            this.userAuthentication(credentials).subscribe( (data : any)=>{
+              localStorage.setItem('userToken',data.access_token);
+              console.log("this is the token received", data.access_token);
+              this.checkLogged();
+              this.router.navigate(['genre']);
+            })
+          }
+        ) 
+      );
     }
     else{
       this.showToaster("Passwords don't match");
