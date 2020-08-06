@@ -21,7 +21,7 @@
                     <input type="password" class="form-control" formControlName="ConfirmPassword" placeholder = "Confirm Password" >
                 </div>
                 <div class="row pb-4 justify-content-end pr-3 pt-2">
-                    <button type="submit" class="btn">Sign up</button>
+                    <button type="submit" class="btn" [disabled]="!registerForm.valid">Sign up</button>
                 </div>
             </form>
         </div>

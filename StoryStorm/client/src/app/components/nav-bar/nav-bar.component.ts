@@ -12,6 +12,10 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.userService.checkLogged();
-    console.log(this.userService.isLoggedIn);
+    console.log("logged in",this.userService.isLoggedIn);
+  }
+
+  onWrite() {
+    console.log("token", localStorage.getItem("userToken"));
   }
 }

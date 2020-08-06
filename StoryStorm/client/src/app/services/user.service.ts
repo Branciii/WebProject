@@ -62,7 +62,6 @@ export class UserService {
           this.userAuthentication(credentials).subscribe( (data : any)=>{
             localStorage.setItem('userToken',data.access_token);
             console.log("this is the token received", data.access_token);
-            console.log(localStorage.getItem('userToken'));
             this.checkLogged();
             this.router.navigate(['genre']);
           })
@@ -71,21 +70,23 @@ export class UserService {
     );
     }
     else{
-      this.showToaster("passwords don't match");
+      this.showToaster("Passwords don't match");
     }
   }
 
   login(credentials: User) {
     this.userAuthentication(credentials).subscribe((data : any)=>{
       localStorage.setItem('userToken',data.access_token);
+      console.log("this is the token received", data.access_token);
+      this.checkLogged();
       this.router.navigate(['/home']);
     },catchError(this.handleError.bind(this))
     );
-    console.log(localStorage.getItem('userToken'));
   }
 
   userAuthentication(credentials: User) {
     var data = "username=" + credentials.UserName + "&password=" + credentials.Password + "&grant_type=password";
+    console.log('this is username sent', credentials.UserName);
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
     return this.http.post(this.url + '/token', data, { headers: reqHeader });
   }
@@ -95,7 +96,7 @@ export class UserService {
       this.isLoggedIn = true;
     }
     else{
-      console.log("user token is null", localStorage.getItem('userToken'));
+      //console.log("user token is null", localStorage.getItem('userToken'));
       this.isLoggedIn = false;
     }
   }
