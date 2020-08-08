@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { GenreComponent } from './components/genre/genre.component';
 import { HomeComponent } from './components/home/home.component';
 import { WriteComponent } from './components/write/write.component';
+import { ReadComponent } from './components/read/read.component';
 
 const routes: Routes = [
   {path : '', component : AboutComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path : 'register', component : RegisterComponent},
   {path : 'genre', component : GenreComponent},
   {path : 'home', component : HomeComponent},
-  {path : 'write', component : WriteComponent}
+  {path : 'write', component : WriteComponent},
+  {path : 'read', component : ReadComponent}
 ];
 
 @NgModule({

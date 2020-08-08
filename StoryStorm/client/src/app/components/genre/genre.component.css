@@ -13,15 +13,15 @@
     font-size: 20px ;
   }
 
-.circle:hover,
-.circle:focus,
-.circle:active,
-.circle:target {
-    background: rgb(238, 30, 30);
-    color: #000;
-    transition: all 0.5s ease-in;
-    font-weight: bolder ;
-  }
+  .circle:hover,
+  .circle:focus,
+  .circle:active,
+  .circle:target {
+      background: rgb(238, 30, 30);
+      color: #000;
+      transition: all 0.5s ease-in;
+      font-weight: bolder ;
+    }
 
 h1{
     color : rgb(116, 114, 114);
@@ -37,4 +37,3 @@ h1{
 #btnNext:hover{
   background : rgb(39, 185, 39);
 }
-

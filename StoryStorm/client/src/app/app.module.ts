@@ -7,6 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from './app.interceptor';
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +41,7 @@ import { ReadComponent } from './components/read/read.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CollapseModule.forRoot(),
+    RichTextEditorAllModule
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,

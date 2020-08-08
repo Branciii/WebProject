@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IChapterService.cs" />
     <Compile Include="IGenreService.cs" />
     <Compile Include="IStoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

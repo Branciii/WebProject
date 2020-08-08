@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IChapterRepository.cs" />
     <Compile Include="IGenreRepository.cs" />
     <Compile Include="IStoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,6 +12,8 @@ export class GenreComponent implements OnInit {
 
   allGenres: Observable<Genre[]>;  
 
+  isClicked : Array<boolean>;
+
   GenreIDs: Array<string>;
 
   constructor(private genreService : GenreService) { }
@@ -19,6 +21,7 @@ export class GenreComponent implements OnInit {
   ngOnInit() {
     this.allGenres = this.genreService.getGenres();
     this.GenreIDs = [];
+    this.isClicked = [];
     console.log(this.allGenres);
 
     /*

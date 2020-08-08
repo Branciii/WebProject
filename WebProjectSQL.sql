@@ -102,14 +102,14 @@ INSERT INTO GENRE (GenreID, Name) VALUES ('1e396fbb-f568-4254-9037-80eb69f4f4b4'
 INSERT INTO GENRE (GenreID, Name) VALUES ('228ac338-4cd8-4835-9c72-1db2b53adb04', 'Horror');
 INSERT INTO GENRE (GenreID, Name) VALUES ('69a36f75-27d5-4593-aeba-b5093908ab8d', 'Thriller');
 INSERT INTO GENRE (GenreID, Name) VALUES ('92621ec4-baec-48ef-917c-a38b27cbcceb', 'Paranormal');
-INSERT INTO GENRE (GenreID, Name) VALUES ('ffcdaad3-8d28-4a4d-aadf-61669675e90a', 'Science Fiction');
+INSERT INTO GENRE (GenreID, Name) VALUES ('ffcdaad3-8d28-4a4d-aadf-61669675e90a', 'Sci-Fi');
 INSERT INTO GENRE (GenreID, Name) VALUES ('123e6520-2521-4ca9-ac75-3f3f6375d524', 'Historical');
 INSERT INTO GENRE (GenreID, Name) VALUES ('c50d7e3a-4821-4a1c-ba1e-d1b26ba7244d', 'Cooking');
 INSERT INTO GENRE (GenreID, Name) VALUES ('34306c9a-58ef-498b-9da4-18620df40589', 'Travel');
 INSERT INTO GENRE (GenreID, Name) VALUES ('995bd319-400b-45c3-ba92-5323d95fe5bf', 'Motivational');
 INSERT INTO GENRE (GenreID, Name) VALUES ('b9354c75-f738-48d1-9638-6a8e807fdf04', 'Humor');
 INSERT INTO GENRE (GenreID, Name) VALUES ('2b79ad50-b120-4b79-87ac-ecee18ebb95f', 'Children’s');
-INSERT INTO GENRE (GenreID, Name) VALUES ('897b057d-8feb-4180-8468-f477650b98d6', 'Young Adult');
+INSERT INTO GENRE (GenreID, Name) VALUES ('897b057d-8feb-4180-8468-f477650b98d6', 'YA');
 
 
 
