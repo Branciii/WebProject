@@ -10,6 +10,9 @@ using AutoMapper;
 using Stories.Service.Common;
 using Stories.Model;
 using Microsoft.AspNet.Identity;
+using System.Data.SqlClient;
+using System.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace Stories.WebAPI.Controllers
 {
@@ -40,6 +43,34 @@ namespace Stories.WebAPI.Controllers
             List<Story> Stories = Mapper.Map<List<Story>>(StoryList);
 
             return Request.CreateResponse(HttpStatusCode.OK, Stories);
+        }
+
+        [HttpPost]
+        [Route("api/parexample")]
+        public HttpResponseMessage ParEx([FromBody] string content)
+        {
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand go = new SqlCommand();
+
+                con.Open();
+                go.Connection = con;
+                go.CommandText = "INSERT INTO PAREXAMPLE (Content) VALUES (@InsuredID);";
+                go.Parameters.Add("@InsuredID", SqlDbType.NVarChar, -1).Value = content;
+
+                SqlDataReader readIn = go.ExecuteReader();
+                while (readIn.Read())
+                {
+                    // reading data from reader
+                }
+
+                con.Close();
+
+                // other stuff
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }
