@@ -72,6 +72,20 @@ namespace Stories.WebAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, Genres);
         }
 
+        [HttpGet]
+        [Authorize]
+        [Route("api/getStoryGenres")]
+        public async Task<HttpResponseMessage> GetStoryGenresAsync(Guid StoryId)
+        {
+            List<GenreModel> GenreList = await GenreService.GetStoryGenresAsync(StoryId);
+            if (GenreList.Count() == 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, GenreList);
+        }
+
         [HttpPost]
         [Authorize]
         [Route("api/postUsersGenre")]

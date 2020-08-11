@@ -10,6 +10,8 @@ namespace Stories.Service.Common
     public interface IChapterService
     {
         Task<List<ChapterModel>> GetChaptersAsync(Guid StoryId);
+        Task<ChapterModel> GetChapterAsync(Guid StoryId, int ChapterNumber);
+        Task PostNewChapterAsync(ChapterModel chapterModel);
         //Task<List<ChapterModel>> GetChapterAsync(Guid ChapterID);
     }
 }

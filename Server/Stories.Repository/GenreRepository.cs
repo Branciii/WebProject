@@ -47,10 +47,41 @@ namespace Stories.Repository
         {
             List<GenreModel> GenreList = new List<GenreModel>();
 
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProjectSQL;Integrated Security=True";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
 
             string queryString =
                 "SELECT g.GenreID,g.Name FROM USER_GENRE u JOIN GENRE g ON (g.GenreID = u.GenreId) WHERE UserId = '" + UserId + "';";
+
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
+            {
+                SqlCommand command =
+                    new SqlCommand(queryString, connection);
+                await connection.OpenAsync();
+
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                // Call Read before accessing data.
+                while (await reader.ReadAsync())
+                {
+                    GenreList.Add(new GenreModel { GenreID = reader.GetGuid(0), Name = reader.GetString(1) });
+                }
+
+                // Call Close when done reading.
+                reader.Close();
+
+            }
+            return GenreList;
+        }
+
+        public async Task<List<GenreModel>> GetStoryGenresAsync(Guid StoryId)
+        {
+            List<GenreModel> GenreList = new List<GenreModel>();
+
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
+
+            string queryString =
+                "SELECT g.GenreID, g.Name FROM GENRE g JOIN STORY_GENRE sg ON (g.GenreID = sg.GenreId) WHERE (sg.StoryId = '" + StoryId + "'); ";
 
             using (SqlConnection connection =
                        new SqlConnection(connectionString))
@@ -78,7 +109,7 @@ namespace Stories.Repository
         {
             Guid GenreId = default;
 
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProjectSQL;Integrated Security=True";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
 
             string findGenreId =
                 "SELECT GenreID FROM GENRE WHERE Name = '" + GenreName + "';";

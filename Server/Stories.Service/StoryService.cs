@@ -21,5 +21,6 @@ namespace Stories.Service
         {
             return await StoryRepository.GetStoriesAsync(UserId);
         }
+
     }
 }

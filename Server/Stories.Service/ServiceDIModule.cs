@@ -14,6 +14,7 @@ namespace Stories.Service
         {
             builder.RegisterType<GenreService>().As<IGenreService>().InstancePerDependency();
             builder.RegisterType<StoryService>().As<IStoryService>().InstancePerDependency();
+            builder.RegisterType<ChapterService>().As<IChapterService>().InstancePerDependency();
         }
     }
 }

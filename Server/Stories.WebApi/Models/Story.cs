@@ -14,6 +14,5 @@ namespace Stories.WebAPI.Models
         public int Grade { get; set; }
         public string Description { get; set; }
         public int Finished { get; set; }
-        public List<Genre> Genres{ get; set; }
     }
 }

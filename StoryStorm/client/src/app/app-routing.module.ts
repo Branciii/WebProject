@@ -9,7 +9,7 @@ import { WriteComponent } from './components/write/write.component';
 import { ReadComponent } from './components/read/read.component';
 
 const routes: Routes = [
-  {path : '', component : AboutComponent},
+  {path : '', component : HomeComponent},
   {path : 'login', component : LoginComponent},
   {path : 'about', component : AboutComponent},
   {path : 'register', component : RegisterComponent},

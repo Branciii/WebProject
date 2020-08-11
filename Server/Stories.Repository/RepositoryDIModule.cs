@@ -14,6 +14,7 @@ namespace Stories.Repository
         {
             builder.RegisterType<GenreRepository>().As<IGenreRepository>().InstancePerDependency();
             builder.RegisterType<StoryRepository>().As<IStoryRepository>().InstancePerDependency();
+            builder.RegisterType<ChapterRepository>().As<IChapterRepository>().InstancePerDependency();
         }
     }
 }

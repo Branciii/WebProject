@@ -22,3 +22,8 @@ h1{
     border-radius : 10px;
     padding : 20px;
 }
+
+#oneStory:hover{
+    background : rgba(51, 209, 183, 0.295);
+    cursor: pointer;
+}

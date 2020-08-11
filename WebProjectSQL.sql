@@ -82,7 +82,6 @@ INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('d605c02a-
 INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber, Content) VALUES ('b9c1048d-58c1-41d0-80cf-1da575764393', 'ec949e04-801b-41f7-b161-ed243fc83880', 'Intro', 0, 'this is the intro');
 INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('84e0a8d4-03c6-4a2b-8755-0d4441114ff1', 'ec949e04-801b-41f7-b161-ed243fc83880', 'In The Beggining', 1);
 INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('8338a4ba-15ee-4950-8898-088527457a47', 'ec949e04-801b-41f7-b161-ed243fc83880', 'First Challenge', 2);
-INSERT INTO CHAPTER (ChapterID, StoryId, Name, ChapterNumber) VALUES ('3115b2f6-520c-4d32-8abc-35d9ee5be03c', 'ec949e04-801b-41f7-b161-ed243fc83880', 'Ending', 3);
 
 
 

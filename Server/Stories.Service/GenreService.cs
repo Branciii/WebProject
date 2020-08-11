@@ -29,6 +29,11 @@ namespace Stories.Service
             return await GenreRepository.GetUsersGenresAsync(UserId);
         }
 
+        public async Task<List<GenreModel>> GetStoryGenresAsync(Guid StoryId)
+        {
+            return await GenreRepository.GetStoryGenresAsync(StoryId);
+        }
+
         public async Task<bool> PostUsersGenreAsync(string UserId, string GenreName)
         {
             return await GenreRepository.PostUsersGenreAsync(UserId, GenreName);

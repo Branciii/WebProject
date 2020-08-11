@@ -9,7 +9,7 @@ using Stories.Model;
 
 namespace Stories.Service
 {
-    public class ChapterService
+    public class ChapterService : IChapterService
     {
         protected IChapterRepository ChapterRepository { get; private set; }
 
@@ -21,6 +21,16 @@ namespace Stories.Service
         public async Task<List<ChapterModel>> GetChaptersAsync(Guid StoryId)
         {
             return await ChapterRepository.GetChaptersAsync(StoryId);
+        }
+
+        public async Task<ChapterModel> GetChapterAsync(Guid StoryId, int ChapterNumber)
+        {
+            return await ChapterRepository.GetChapterAsync(StoryId, ChapterNumber);
+        }
+
+        public async Task PostNewChapterAsync(ChapterModel chapterModel)
+        {
+            await ChapterRepository.PostNewChapterAsync(chapterModel);
         }
 
 

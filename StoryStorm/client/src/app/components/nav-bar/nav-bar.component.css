@@ -1,7 +1,13 @@
 #navbar1{
     font-family: 'Yeon Sung';
+    color : #104F55;
     padding-left : 50px;
     padding-right : 70px;
+    background-color:  #6AB4A5;
+}
+
+#navbarTitle{
+    font-size:60px;
 }
 
 #navbar-lett{
@@ -16,8 +22,8 @@ button {
     display: block;
     margin: 0 auto;
     padding: 8px;
-    max-width: 200px;
-    height : 100px;
+    width: 200px;
+    height : 80px;
     background: transparent;
     color: #fff;
     text-align: center;
@@ -34,7 +40,7 @@ button:hover,
 button:focus,
 button:active {
   background: #fff;
-  color: #000;
+  color: #104F55;
   transition: all 0.5s ease-in;
 }
 

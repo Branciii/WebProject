@@ -12,7 +12,6 @@ using Stories.Model;
 using Microsoft.AspNet.Identity;
 using System.Data.SqlClient;
 using System.Data;
-using System.ComponentModel.DataAnnotations;
 
 namespace Stories.WebAPI.Controllers
 {
@@ -27,7 +26,7 @@ namespace Stories.WebAPI.Controllers
             this.Mapper = mapper;
         }
 
-
+        
         [HttpGet]
         [Authorize]
         [Route("api/getStories")]
@@ -40,37 +39,112 @@ namespace Stories.WebAPI.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-            List<Story> Stories = Mapper.Map<List<Story>>(StoryList);
+            //List<Story> Stories = Mapper.Map<List<Story>>(StoryList);
 
-            return Request.CreateResponse(HttpStatusCode.OK, Stories);
+            return Request.CreateResponse(HttpStatusCode.OK, StoryList);
         }
 
-        [HttpPost]
-        [Route("api/parexample")]
-        public HttpResponseMessage ParEx([FromBody] string content)
+
+        /*
+        [HttpGet]
+        [Authorize]
+        [Route("api/getStories")]
+        public async Task<HttpResponseMessage> GetStoriesAsync()
         {
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+            string queryString = "";
+            string debug = "";
+            List<StoryModel> StoryList = new List<StoryModel>();
+            
+
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            // provjera ima li korisnik najdrazih zanrova
+            string findFavGenres =
+                "SELECT COUNT(*) as count FROM USER_GENRE WHERE UserId = '" + UserId + "';";
+
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
             {
-                SqlCommand go = new SqlCommand();
+                SqlCommand command =
+                    new SqlCommand(findFavGenres, connection);
+                await connection.OpenAsync();
 
-                con.Open();
-                go.Connection = con;
-                go.CommandText = "INSERT INTO PAREXAMPLE (Content) VALUES (@InsuredID);";
-                go.Parameters.Add("@InsuredID", SqlDbType.NVarChar, -1).Value = content;
-
-                SqlDataReader readIn = go.ExecuteReader();
-                while (readIn.Read())
+                int count = (int)await command.ExecuteScalarAsync();
+                //korisnik ima najdraze zanrove pa će mu se prvo pojaviti priče u tom žanru
+                if (count > 0)
                 {
-                    // reading data from reader
+                    queryString = "SELECT DISTINCT s.StoryID, s.AuthorId, s.Title, s.Description, s.Grade, s.Finished, anu.UserName, g.GenreID, g.Name " +
+                                "FROM STORY s " +
+                                "JOIN STORY_GENRE sg ON(s.StoryID = sg.StoryId) AND(s.AuthorId != '" + UserId + "')" +
+                                "JOIN AspNetUsers anu ON(anu.id = s.AuthorId)" +
+                                "JOIN USER_GENRE ug ON(sg.GenreId = ug.GenreId) AND(ug.UserId = '" + UserId + "')" +
+                                "JOIN GENRE g ON (sg.GenreId=g.GenreID)" +
+                                "ORDER BY s.Grade";
+                }
+                else
+                {
+                    queryString = "SELECT DISTINCT s.StoryID, s.AuthorId, s.Title, s.Description, s.Grade, s.Finished, anu.UserName, g.GenreID, g.Name " +
+                                "FROM STORY s " +
+                                "JOIN STORY_GENRE sg ON(s.StoryID = sg.StoryId) AND(s.AuthorId != '" + UserId + "')" +
+                                "JOIN AspNetUsers anu ON(anu.id = s.AuthorId) " +
+                                "JOIN GENRE g ON (sg.GenreId=g.GenreID)" +
+                                "ORDER BY s.Grade; ";
                 }
 
-                con.Close();
+                command =
+                    new SqlCommand(queryString, connection);
 
-                // other stuff
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                Guid lastStId = Guid.NewGuid();
+                List<GenreModel> GenreList = new List<GenreModel>();
+                while (await reader.ReadAsync())
+                {
+                    debug += "                                                 ";
+                    debug += "                                                 ";
+                    debug += "                                                              ";
+                    debug += "TRY " + "lastStId: " + lastStId + " StoryId: " + reader.GetGuid(0) +
+                        " Title: " + reader.GetString(2) +" Genre name: " + reader.GetString(8);
+                    Guid StoryId = reader.GetGuid(0);
+    
+                    if (lastStId == StoryId)
+                    {
+                        GenreList.Add(new GenreModel { GenreID = reader.GetGuid(7), Name = reader.GetString(8) });
+
+                    }
+                    else
+                    {
+                        GenreList = new List<GenreModel>();
+                        GenreList.Add(new GenreModel { GenreID = reader.GetGuid(7), Name = reader.GetString(8) });
+                        StoryList.Add(new StoryModel
+                        {
+                            StoryID = StoryId,
+                            AuthorId = reader.GetString(1),
+                            Title = reader.GetString(2),
+                            Description = reader.GetString(3),
+                            Grade = reader.GetInt32(4),
+                            Finished = reader.GetInt32(5),
+                            Author = reader.GetString(6),
+                            Genres = GenreList
+                        });
+                    }
+                    foreach (var story in StoryList)
+                    {
+                        debug += " current genres for story : " + story.Title + " are : ";
+                        foreach (var genre in story.Genres)
+                        {
+                            debug += genre.Name;
+                        }
+                    }
+                    
+                    lastStId = StoryId;
+                }
+
+                // Call Close when done reading.
+                reader.Close();
             }
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
+            return Request.CreateResponse(HttpStatusCode.OK, StoryList);
+        }*/
     }
 }

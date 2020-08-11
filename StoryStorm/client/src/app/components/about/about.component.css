@@ -1,0 +1,10 @@
+
+#read, #write{
+    font-size: 60px;
+}
+
+#readpic, #writepic{
+    padding-top:100px;
+    height : 400px;
+    width : 350px;
+}
