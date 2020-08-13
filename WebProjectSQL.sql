@@ -68,9 +68,14 @@ CREATE TABLE STORY_TAG(
 
 
 
-INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'd674d367-8a46-4577-ac7e-ba46d8867804', 'Some Story Title', 'Some Story Description');
-INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('ec949e04-801b-41f7-b161-ed243fc83880', '5a1db8ba-f35a-48e9-9972-a68000891ac2', 'Some Story2 Title', 'Some Story2 Description');
-INSERT INTO STORY (StoryID,AuthorId,Title,Description) VALUES ('f811efa6-3f87-45f7-81f5-ff94656117f6', 'f286e9c4-b1c0-42c7-a948-c5f030e41c09', 'Some Story3 Title', 'Some Story3 Description');
+INSERT INTO STORY (StoryID,AuthorId,Title,Description, Grade) VALUES ('2c3b5f06-21d3-4d94-8ff8-6d44b6caace8', 'd674d367-8a46-4577-ac7e-ba46d8867804', 'Summer of Adventure',
+'Lisa McKey just finished third grade of high school. There'' a long summer ahead of her and she decides to spend it doing something for the planet. Along with her
+friend Jeanna, she applies for volunteering cleaning the forests of a well known national park. ', 7);
+INSERT INTO STORY (StoryID,AuthorId,Title,Description, Grade) VALUES ('ec949e04-801b-41f7-b161-ed243fc83880', '5a1db8ba-f35a-48e9-9972-a68000891ac2', 'Dark Forest', 
+'Little town Springsun is very nice, filled with many cheerful people. Only problem is, Springsun has a secret: the forest surrounding it is considered hunted,
+as every year a new person, mostly a tourist, goes missing.', 6.8);
+INSERT INTO STORY (StoryID,AuthorId,Title,Description, Grade) VALUES ('f811efa6-3f87-45f7-81f5-ff94656117f6', 'f286e9c4-b1c0-42c7-a948-c5f030e41c09', 'Little Bear Jack', 
+'Little bear Jack goes on an adventure to find honey, together with his two best friends : Lino and Gita.',8);
 
 
 

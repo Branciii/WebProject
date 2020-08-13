@@ -1,8 +1,12 @@
-h1{
-    font-style: oblique;
-    font-family: 'Dosis', sans-serif;
+#rec{
     padding-top: 30px;
     padding-left : 30px;
+    font-size:40px;
+    color : #104F55;
+}
+
+.fa-smile{
+    color : #104F55;
 }
 
 .author{
@@ -12,15 +16,14 @@ h1{
 }
 
 #recContainer{
-    border : 10px solid rgba(51, 209, 183, 0.295);
+    border : 10px solid #6ab4a580;
     border-radius : 10px;
     padding : 20px;
 }
 
-#bestStContainer{
-    border : 10px solid rgba(96, 209, 51, 0.295);
-    border-radius : 10px;
-    padding : 20px;
+#oneStory{
+    margin-top:50px;
+
 }
 
 #oneStory:hover{

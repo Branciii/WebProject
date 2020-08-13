@@ -1,10 +1,35 @@
 
-#read, #write{
+#read, #write, #explore{
     font-size: 60px;
 }
 
+#explore1{
+    text-decoration: underline;
+    text-decoration-thickness: 10%;
+    font-size: 40px;
+}
+
 #readpic, #writepic{
-    padding-top:100px;
+    padding-top:60px;
     height : 400px;
     width : 350px;
+    padding-bottom:40px;
+}
+
+#readpic2{  
+    padding-top : 20px;
+    height : 430px;
+    width : 350px;
+}
+
+#readpic3{
+    padding-top:60px;
+    height : 400px;
+    width : 350px;
+}
+
+#explorepic{
+    padding-top:40px;
+    height:450px;
+    width:360px;
 }
