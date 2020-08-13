@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Stories.Common
 {
-    public class Class1
+    public class StoryFilter
     {
     }
 }

@@ -15,7 +15,9 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
   ngOnInit() {
-    localStorage.clear();
+    if(localStorage.getItem('userToken')!=null){
+      this.userService.router.navigate(['home']);
+    }
     this.registerForm = new FormGroup({
       Email: new FormControl(null, [Validators.required, Validators.email]),
       UserName: new FormControl(null, [Validators.required]),

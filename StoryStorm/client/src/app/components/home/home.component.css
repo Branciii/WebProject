@@ -1,32 +1,46 @@
 #rec{
-    padding-top: 30px;
-    padding-left : 30px;
-    font-size:40px;
-    color : #104F55;
+    padding-top: 20px;
+    font-size:60px;
+    color : #6AB4A5;
 }
 
 .fa-smile{
-    color : #104F55;
+    color : #6AB4A5;
 }
 
 .author{
-    color : rgb(255, 102, 102);
     font-style: oblique;
     font-family: 'Dosis', sans-serif;
 }
 
+.title{
+    font-size: 28px;
+    color : #272635;
+}
+
 #recContainer{
-    border : 10px solid #6ab4a580;
-    border-radius : 10px;
     padding : 20px;
 }
 
 #oneStory{
     margin-top:50px;
-
+    border : 5px solid #6AB4A5;
+    border-radius: 40px ;
 }
 
+
 #oneStory:hover{
-    background : rgba(51, 209, 183, 0.295);
     cursor: pointer;
+    background :#c8ffbe;
+}
+
+#genreCircle{
+    border : 2px solid #CECECE;
+    border-radius : 20px;
+    padding : 10px;
+    margin-bottom : 10px;
+    text-align: center;
+    background : #CECECE;
+    color : #093135;
+    font-weight: 500;
 }

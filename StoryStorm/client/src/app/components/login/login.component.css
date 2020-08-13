@@ -33,3 +33,11 @@ button:active {
 button:hover:disabled{
   color : white;
 }
+
+h6{
+  color : #104F55;
+}
+
+h6:hover{
+  color : white;
+}

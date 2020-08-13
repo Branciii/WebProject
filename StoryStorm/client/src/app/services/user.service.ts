@@ -5,9 +5,6 @@ import { tap, catchError} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-//export type User = { Username: string, Email: string, UserID: any };
-//export type Credentials = { Username: string, Email: string, Password: string };
-
 export type User = { Email? : string, UserName : string, Password : string, ConfirmPassword? : string };
 
 @Injectable({
@@ -23,17 +20,15 @@ export class UserService {
   constructor(private http: HttpClient, public router: Router , private toastr: ToastrService) { }
 
   private handleError(error: HttpErrorResponse) {
+    /*
     if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    
+    */
     if (error.error.ModelState[""][0] == undefined){
       console.log(error);
     }
@@ -57,14 +52,13 @@ export class UserService {
         catchError(this.handleError.bind(this)),
         tap(
           () => {
-            this.userAuthentication(credentials).subscribe( (data : any)=>{
+            this.userAuthentication(credentials).subscribe((data : any)=>{
               localStorage.setItem('userToken',data.access_token);
-              console.log("this is the token received", data.access_token);
               this.checkLogged();
               this.router.navigate(['genre']);
             })
           }
-        ) 
+        ), 
       );
     }
     else{
@@ -73,16 +67,21 @@ export class UserService {
   }
 
   login(credentials: User) {
-    this.userAuthentication(credentials).subscribe((data : any)=>{
-      localStorage.setItem('userToken',data.access_token);
-      console.log("this is the token received", data.access_token);
-      this.checkLogged();
-      this.router.navigate(['/home']);
-    },catchError(this.handleError.bind(this))
+    this.userAuthentication(credentials).subscribe(
+      res => {
+              localStorage.setItem('userToken',res.access_token);
+              //console.log("this is the token received", res.access_token);
+              this.checkLogged();
+              this.router.navigate(['/home']);}   ,
+      err => {
+              //console.log('HTTP Error', err)
+              this.showToaster("Wrong email or password");
+            },
+      //() => console.log('HTTP request completed.')
     );
   }
 
-  userAuthentication(credentials: User) {
+  userAuthentication(credentials: User) : Observable<any> {
     var data = "username=" + credentials.UserName + "&password=" + credentials.Password + "&grant_type=password";
     var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
     return this.http.post(this.url + '/token', data, { headers: reqHeader });

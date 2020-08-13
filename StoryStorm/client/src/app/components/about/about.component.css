@@ -30,6 +30,62 @@
 
 #explorepic{
     padding-top:40px;
-    height:450px;
-    width:360px;
+    height : 450px;
+    width : 360px;
+}
+
+#explorepic2{
+    padding-top: 70px;
+    height : 400px;
+    width : 350px; 
+}
+
+#explorepic3{
+    padding-top:60px;
+    height : 430px;
+    width: 340px;
+}
+
+#explorepic4{
+    padding-top:50px;
+    height : 430px;
+    width:370px;
+}
+
+#explorepic5{
+    padding-top:20px;
+    height : 470px;
+    width : 340px;
+}
+
+#explorepic6{
+    padding-top:20px;
+    height : 470px;
+    width : 340px;
+}
+
+button{
+    display: block;
+    padding: 8px;
+    width: 300px;
+    height : 90px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+    border : 1px solid white;
+    border-radius : 10px;
+    padding-left : 20px;
+    padding-right : 20px;
+    background : #6AB4A5;
+    font-size:25px;
+}
+
+button:hover,
+button:focus,
+button:active {
+  background: #fff;
+  color: #104F55;
+  transition: all 0.5s ease-in;
 }

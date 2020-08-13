@@ -12,8 +12,13 @@
                         <label for="password" style = "color : white">Password</label>
                         <input type="password" class="form-control" placeholder = "Password" formControlName="Password">
                     </div>
-                    <div class="row pb-4 justify-content-end pr-3 pt-2">
+                    <div class="row pb-4 pr-3 pt-2">
                         <button type="submit" [disabled]="!loginForm.valid" class="btn">Sign in</button>
+                    </div>
+                    <div class="row justify-content-center">
+                        <a routerLink = "/register" class="nav-link">
+                            <h6>Don't have an account? Register</h6>
+                        </a>
                     </div>
                 </form>
             </div>

@@ -4,21 +4,25 @@
         <div class="row pt-5 pl-4" id="oneStory" *ngFor="let item of recommendedStories | async">
             <div class="col">
                 <div class="row">
-                    <div class="col-3">
-                        <h4>{{item.Title}} </h4>
-                        <h5 class = "author"> {{item.Author}} </h5>
+                    <div class="col-sm-auto">
+                        <h5 *ngIf="item.Grade>0" class = "lead">{{item.Grade}} &#9733;</h5>
+                        <h5 *ngIf="item.Grade==0" class = "lead">Not ratings yet</h5>
+                    </div>
+                    <div class="col-sm-auto">
+                        <h4 class = "lead title">{{item.Title}} </h4>
+                        <h5 class = "author lead"> {{item.Author}} </h5>
                     </div>
                     <div class="col">
-                        <h5>{{item.Description}}  </h5>
+                        <h5 class = "lead">{{item.Description}}  </h5>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col" *ngFor="let genre of item.Genres">
-                        <div class="text-muted">{{genre.Name}}</div>
-                    </div>
-                    <div class="col">
-                        <h5 *ngIf="item.Grade>0">{{item.Grade}} &#9733;</h5>
-                        <h5 *ngIf="item.Grade==0">Not ratings yet</h5>
+                    <div class="col-4">
+                        <div class="row pt-2 justify-content-center">
+                            <div class="col-sm-auto" *ngFor="let genre of item.Genres">
+                                <div class="text-muted" id = "genreCircle">{{genre.Name}}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
