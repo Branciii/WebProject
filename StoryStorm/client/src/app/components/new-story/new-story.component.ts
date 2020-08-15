@@ -12,13 +12,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class NewStoryComponent implements OnInit {
 
+  selectedOption:any;
+
   storyForm: FormGroup;
 
   allGenres: Observable<Genre[]>;  
 
+  pickedGenres : Array<Genre>;
+
   constructor(private storyService: StoryService, private genreService: GenreService) { }
 
   ngOnInit() {
+    this.pickedGenres = [];
+    this.selectedOption = 0;
     this.allGenres = this.genreService.getGenres();
     this.storyForm = new FormGroup({
       Title: new FormControl(null, [Validators.required]),
@@ -26,4 +32,23 @@ export class NewStoryComponent implements OnInit {
     });
   }
 
+  addGenre(genre : Genre){
+    const found = this.pickedGenres.some(el => el.GenreID === genre.GenreID);
+    if(!found){
+      this.pickedGenres.push(genre);
+    }
+    //console.log(this.pickedGenres);
+  }
+
+  deleteGenre(genreId : string){
+    this.pickedGenres = this.pickedGenres.filter(function(value){ return value.GenreID != genreId ;});
+  }
+
+  onSubmit() {
+    let value: any = this.storyForm.value;
+    this.storyService.newStory(value.Title, value.Description, this.pickedGenres)
+      .subscribe(data => {
+        console.log(data);
+      })
+  }
 }

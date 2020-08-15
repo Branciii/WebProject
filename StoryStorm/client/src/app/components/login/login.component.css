@@ -32,6 +32,7 @@ button:active {
 
 button:hover:disabled{
   color : white;
+  cursor : default;
 }
 
 h6{

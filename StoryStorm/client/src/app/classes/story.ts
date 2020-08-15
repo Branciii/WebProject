@@ -7,5 +7,5 @@ export class Story {
     Grade : number;
     Description : string;
     Finished : number;
-    Genre : Array<Genre>
+    Genres : Array<Genre>
 }

@@ -27,6 +27,7 @@ export class GenreComponent implements OnInit {
     /*
     this.genreService.getGenres()
       .subscribe(data => {
+        this.allGenres = data as Genre[];
         console.log(Object.values(data));
       })*/
   }

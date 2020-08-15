@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { WriteComponent } from './components/write/write.component';
 import { ReadComponent } from './components/read/read.component';
 import { NewStoryComponent } from './components/new-story/new-story.component';
+import { EditStoryComponent } from './components/edit-story/edit-story.component';
 
 const routes: Routes = [
   {path : '', component : HomeComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path : 'home', component : HomeComponent},
   {path : 'write', component : WriteComponent},
   {path : 'read', component : ReadComponent},
-  {path : 'new-story', component : NewStoryComponent}
+  {path : 'new-story', component : NewStoryComponent},
+  {path : 'edit-story', component : EditStoryComponent}
 ];
 
 @NgModule({

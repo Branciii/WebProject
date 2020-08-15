@@ -1,7 +1,7 @@
 <section class = "bg-light" style = "padding-top : 50px">
-    <div class="container pt-5">
+    <div class="container pt-2">
         <div class="row justify-content-center">
-            <div class="col-6 border my-5" style = "box-sizing:border-box; background : #6AB4A5">
+            <div class="col border mb-5" style = "box-sizing:border-box; background : #6AB4A5">
                 <form [formGroup]="storyForm" (ngSubmit)="onSubmit()">
                     <div class="row mb-3"><h1 class = "ml-3 mt-1 mb-4 text-white lead display-4">Story Form</h1></div>
                     <div class="row">
@@ -11,15 +11,25 @@
                                 <input type="text" class="form-control" placeholder = "Title" formControlName="Title">
                             </div>
                             <div class="form-group">
-                                <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="Origins" name="Origins" #Origin>
-                                    <option *ngFor="let Genre of allGenres | async" value="{{Genre.Name}}">{{Genre.Name}}</option>
-                                </select>
+                                <label for="Genres" style = "color : white">Genres</label>
+                                <select (change)="addGenre(selectedOption)"  class="custom-select" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}" required class="form-control"> 
+                                    <option id = "selectPlaceholder" [value]="0" disabled selected>Add genre</option>
+                                    <option *ngFor="let Genre of allGenres | async" [ngValue]="Genre">{{Genre.Name}}</option>
+                                </select> 
+                                <div class="row pt-3 justify-content-left">
+                                    <div class="col-sm-auto" *ngFor="let genre of pickedGenres">
+                                        <div class="text-muted" id = "genreCircle">{{genre.Name}}<i class="fas fa-times" (click)="deleteGenre(genre.GenreID)"></i></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6" id = "descriptionCol">
                             <div class="form-group">
                                 <label for="Description" style = "color : white">Description</label>
-                                <input type="text" class = "form-control" placeholder = "Description" formControlName = "Description">
+                                <textarea class = "form-control" name="subject" placeholder="Description.." formControlName = "Description" ></textarea>
+                            </div>
+                            <div class="row pb-4 pr-3 pt-2">
+                                <button type="submit" [disabled]="(!storyForm.valid)||(pickedGenres.length==0)" class="btn">Submit</button>
                             </div>
                         </div>
                     </div>

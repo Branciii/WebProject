@@ -96,6 +96,28 @@ namespace Stories.Repository
             }
             return StoryList;
         }
+        public async Task PostNewStoryAsync(StoryModel story)
+        {
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
+            string queryString =
+                "INSERT INTO STORY (StoryID, AuthorId, Title, Description) VALUES ('" + story.StoryID + "' ,'" + story.AuthorId + "' ,'" + story.Title + "' ,'" + story.Description + "');";
+
+            foreach (GenreModel genre in story.Genres)
+            {
+                queryString += "INSERT INTO STORY_GENRE (StoryId, GenreId) VALUES ( '" + story.StoryID + "', '" + genre.GenreID + "');" ;
+            }
+
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
+            {
+                SqlCommand command =
+                    new SqlCommand(queryString, connection);
+                await connection.OpenAsync();
+
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+            }
+        }
     }
 }
 

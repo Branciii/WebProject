@@ -10,5 +10,6 @@ namespace Stories.Repository.Common
     public interface IStoryRepository
     {
         Task<List<StoryModel>> GetStoriesAsync(string UserId);
+        Task PostNewStoryAsync(StoryModel story);
     }
 }
