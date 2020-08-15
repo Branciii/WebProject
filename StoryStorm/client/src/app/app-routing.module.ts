@@ -7,6 +7,7 @@ import { GenreComponent } from './components/genre/genre.component';
 import { HomeComponent } from './components/home/home.component';
 import { WriteComponent } from './components/write/write.component';
 import { ReadComponent } from './components/read/read.component';
+import { NewStoryComponent } from './components/new-story/new-story.component';
 
 const routes: Routes = [
   {path : '', component : HomeComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path : 'genre', component : GenreComponent},
   {path : 'home', component : HomeComponent},
   {path : 'write', component : WriteComponent},
-  {path : 'read', component : ReadComponent}
+  {path : 'read', component : ReadComponent},
+  {path : 'new-story', component : NewStoryComponent}
 ];
 
 @NgModule({

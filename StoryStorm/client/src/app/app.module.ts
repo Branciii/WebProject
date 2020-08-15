@@ -19,6 +19,7 @@ import { GenreComponent } from './components/genre/genre.component';
 import { HomeComponent } from './components/home/home.component';
 import { WriteComponent } from './components/write/write.component';
 import { ReadComponent } from './components/read/read.component';
+import { NewStoryComponent } from './components/new-story/new-story.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ReadComponent } from './components/read/read.component';
     GenreComponent,
     HomeComponent,
     WriteComponent,
-    ReadComponent
+    ReadComponent,
+    NewStoryComponent
   ],
   imports: [
     BrowserModule,

@@ -43,3 +43,16 @@ button:active {
   color: #104F55;
   transition: all 0.5s ease-in;
 }
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+.dropdown-item{
+    text-align: center;
+}
+
+.dropdown-item:hover,
+.dropdown-item:active{
+    background : rgb(236, 236, 236);
+}
