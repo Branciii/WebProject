@@ -105,6 +105,7 @@ namespace Stories.Repository
             return GenreList;
         }
 
+        /*
         public async Task<bool> PostUsersGenreAsync(string UserId, string GenreName)
         {
             Guid GenreId = default;
@@ -155,6 +156,33 @@ namespace Stories.Repository
                 reader.Close();
             }
             return true;
+        }*/
+
+        public async Task PostUserGenresAsync(string UserId, List<GenreModel> genreModels)
+        {
+            List<GenreModel> GenreList = new List<GenreModel>();
+
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
+
+            string queryString = "";
+
+            foreach (GenreModel genre in genreModels)
+            {
+                queryString += "INSERT INTO USER_GENRE (UserId, GenreId) VALUES ( '" + UserId + "', '" + genre.GenreID + "');";
+            }
+
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
+            {
+                SqlCommand command =
+                    new SqlCommand(queryString, connection);
+                await connection.OpenAsync();
+
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                reader.Close();
+
+            }
         }
     }
 }

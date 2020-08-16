@@ -1,15 +1,31 @@
 <section style = "padding-top : 50px">
   <div class="container">
-    <div class="row">
-      <div class="col"><h1>Please pick your favourite genres!</h1>  </div>
-      <div class="col align-self-end">
-        <a href="/home"><div class="btn mb-3" id = "btnNext">Next</div></a>
+    <div class="row" >
+      <div class="col lead text-center" id = "title">
+        Pick your favourite genres
+      </div>  
+    </div>
+    <div class="row pt-3 justify-content-between" id="final">
+      <div class="col-5">
+        <div class="row">
+          <div class="col-sm-auto" *ngFor="let genre of allGenres">
+            <div class="text-muted mt-5" id = "notPicked" (click)="addPickedGenre(genre)">{{genre.Name}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pl-5 col-5">
+        <div class="row">
+          <div class="col-sm-auto" *ngFor="let genre of pickedGenres">
+            <div class="mt-5" id = "picked">{{genre.Name}}<i class="fas fa-times" (click)="deletePickedGenre(genre)"></i></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row pt-3" id="final">
-      <div class="col-3" *ngFor="let item of allGenres | async">
-        <div class="btn mt-5" id = "circle">{{item.Name}}</div>
+    <div class="row">
+      <div class="col align-self-end">
+        <div class="btn mb-3" (click)="savePickedGenres()" id = "save">Save</div>
       </div>
-    </div>    
+    </div>  
   </div>  
 </section>

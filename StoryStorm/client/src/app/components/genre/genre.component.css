@@ -1,39 +1,50 @@
-.circle {
-    padding : 20px 20px 20px 20px;
-    height: 150px;
-    width: 150px;
-    background-color: rgb(230, 72, 72);
-    border-radius: 50%;
-    display: inline-block;
-    text-align: center;
-    line-height: 100px;
-    opacity : 0.8;
-    color : white;
-    font-weight: bold;
-    font-size: 20px ;
-  }
-
-  .circle:hover,
-  .circle:focus,
-  .circle:active,
-  .circle:target {
-      background: rgb(238, 30, 30);
-      color: #000;
-      transition: all 0.5s ease-in;
-      font-weight: bolder ;
-    }
-
-h1{
-    color : rgb(116, 114, 114);
+#notPicked{
+  border : 2px solid #CECECE;
+  border-radius : 20px;
+  padding : 10px;
+  margin-top : 10px;
+  text-align: center;
+  background : #CECECE;
+  color : #093135;
+  font-weight: 500;
 }
 
-#btnNext{
-  background : rgb(86, 224, 86);
-  padding : 20px 50px 20px 50px;
-  color : white;
-  font-weight : bold;
+#notPicked:hover{
+  background : #c0c0c0;
+  border-color: #c0c0c0;
+  cursor : pointer;
 }
 
-#btnNext:hover{
-  background : rgb(39, 185, 39);
+#picked{
+  border : 2px solid #FC6471;
+  border-radius : 20px;
+  padding : 10px;
+  margin-top : 10px;
+  text-align: center;
+  background : #FC6471;
+  color : #093135;
+  font-weight: 500;
+}
+
+i{
+  padding-left:12px;
+  vertical-align: top;
+}
+
+i:hover{
+  color : black;
+  cursor : pointer;
+}
+
+#save{
+  color : green;
+}
+
+#save:hover{
+  color : red;
+}
+
+#title{
+  font-size: 50px;
+  text-align : center;
 }

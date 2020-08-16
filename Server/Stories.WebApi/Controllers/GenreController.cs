@@ -55,6 +55,7 @@ namespace Stories.WebAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, GenreList);
         }
 
+
         [HttpGet]
         [Authorize]
         [Route("api/getUsersGenres")]
@@ -67,9 +68,24 @@ namespace Stories.WebAPI.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-            List<Genre> Genres = Mapper.Map<List<Genre>>(GenreList);
 
-            return Request.CreateResponse(HttpStatusCode.OK, Genres);
+            return Request.CreateResponse(HttpStatusCode.OK, GenreList);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("api/getOtherGenres")]
+        public async Task<HttpResponseMessage> GetOtherGenresAsync()
+        {
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+
+            List<GenreModel> GenreList = await GenreService.GetUsersGenresAsync(UserId);
+            if (GenreList.Count() == 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, GenreList);
         }
 
         [HttpGet]
@@ -88,16 +104,14 @@ namespace Stories.WebAPI.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("api/postUsersGenre")]
-        public async Task<HttpResponseMessage> PostUsersGenreAsync(string genreName)
+        [Route("api/postUserGenres")]
+        public async Task<HttpResponseMessage> PostUserGenresAsync(List<GenreModel> genreModels)
         {
             string UserId = RequestContext.Principal.Identity.GetUserId();
 
-            if(await GenreService.PostUsersGenreAsync(UserId, genreName))
-            {
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            return Request.CreateResponse(HttpStatusCode.NotFound);
+            await GenreService.PostUserGenresAsync(UserId, genreModels);
+            
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

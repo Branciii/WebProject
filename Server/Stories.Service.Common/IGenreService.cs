@@ -12,6 +12,6 @@ namespace Stories.Service.Common
         Task<List<GenreModel>> GetGenresAsync();
         Task<List<GenreModel>> GetUsersGenresAsync(string UserId);
         Task<List<GenreModel>> GetStoryGenresAsync(Guid StoryId);
-        Task<bool> PostUsersGenreAsync(string UserId, string GenreName);
+        Task PostUserGenresAsync(string UserId, List<GenreModel> genreModels);
     }
 }

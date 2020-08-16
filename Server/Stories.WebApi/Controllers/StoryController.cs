@@ -10,9 +10,6 @@ using AutoMapper;
 using Stories.Service.Common;
 using Stories.Model;
 using Microsoft.AspNet.Identity;
-using System.Data.SqlClient;
-using System.Data;
-using Stories.Repository;
 
 namespace Stories.WebAPI.Controllers
 {
@@ -44,6 +41,24 @@ namespace Stories.WebAPI.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, StoryList);
         }
+
+        /*
+        [HttpGet]
+        [Authorize]
+        [Route("api/getUsersStories")]
+        public async Task<HttpResponseMessage> GetUsersStoriesAsync()
+        {
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+
+            List<StoryModel> StoryList = await StoryService.GetUserStoriesAsync(UserId);
+            if (StoryList.Count() == 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            
+            return Request.CreateResponse(HttpStatusCode.OK, StoryList);
+        }*/
+
 
         [HttpPost]
         [Authorize]

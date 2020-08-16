@@ -15,9 +15,7 @@ namespace Stories.Repository
         public async Task<List<StoryModel>> GetStoriesAsync(string UserId)
         {
             string queryString = "";
-            string debug = "";
             List<StoryModel> StoryList = new List<StoryModel>();
-
 
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
 
