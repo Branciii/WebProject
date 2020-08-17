@@ -17,6 +17,7 @@ export class UserService {
 
   public isLoggedIn : boolean;
 
+
   constructor(private http: HttpClient, public router: Router , private toastr: ToastrService) { }
 
   private handleError(error: HttpErrorResponse) {

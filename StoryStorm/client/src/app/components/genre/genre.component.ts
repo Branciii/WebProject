@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GenreService } from '../../services/genre.service';
 //import { Observable } from 'rxjs';
 import { Genre } from '../../classes/genre';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-genre',
@@ -10,33 +11,44 @@ import { Genre } from '../../classes/genre';
 })
 export class GenreComponent implements OnInit {
 
-  allGenres: Genre[];  
+  notPickedGenres: Genre[];  
 
   pickedGenres: Array<Genre>;
 
-  constructor(private genreService : GenreService) { }
+  constructor(private genreService : GenreService, private router : Router) { }
 
   ngOnInit() {
     //this.allGenres = this.genreService.getGenres();
     //console.log(this.allGenres);
 
-    this.pickedGenres = [];
+    if (localStorage.getItem("userToken")==null){
+      this.router.navigate(['login']);
+    }  
+    else{
+      this.genreService.getGenres()
+        .subscribe(data => {
+          this.notPickedGenres = data as Genre[];
+          console.log(Object.values(data));
+        })
 
-    this.genreService.getGenres()
-      .subscribe(data => {
-        this.allGenres = data as Genre[];
-        console.log(Object.values(data));
-      })
+      this.genreService.getPickedGenres()
+        .subscribe(data => {
+          this.pickedGenres = data as Genre[];
+          console.log(Object.values(data));
+        })  
+    }
+
+
   }
 
   addPickedGenre(genre : Genre){
     this.pickedGenres.push(genre);
-    this.allGenres = this.allGenres.filter(function(value){ return value.GenreID != genre.GenreID ;});
+    this.notPickedGenres = this.notPickedGenres.filter(function(value){ return value.GenreID != genre.GenreID ;});
   }
 
   deletePickedGenre(genre : Genre){
     this.pickedGenres = this.pickedGenres.filter(function(value){ return value.GenreID != genre.GenreID ;});
-    this.allGenres.push(genre);
+    this.notPickedGenres.push(genre);
   }
 
   savePickedGenres(){
@@ -44,6 +56,7 @@ export class GenreComponent implements OnInit {
       .subscribe(data => {
         //console.log(data);
       })
+    this.router.navigate(['home']);
   }
 
 }

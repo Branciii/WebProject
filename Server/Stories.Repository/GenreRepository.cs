@@ -74,6 +74,37 @@ namespace Stories.Repository
             return GenreList;
         }
 
+        public async Task<List<GenreModel>> GetOtherGenresAsync(string UserId)
+        {
+            List<GenreModel> GenreList = new List<GenreModel>();
+
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
+
+            string queryString =
+                "SELECT g.GenreID, g.Name FROM GENRE g WHERE g.GenreID NOT IN (SELECT GenreId FROM USER_GENRE WHERE (UserId = '" + UserId + "'));";
+
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
+            {
+                SqlCommand command =
+                    new SqlCommand(queryString, connection);
+                await connection.OpenAsync();
+
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                // Call Read before accessing data.
+                while (await reader.ReadAsync())
+                {
+                    GenreList.Add(new GenreModel { GenreID = reader.GetGuid(0), Name = reader.GetString(1) });
+                }
+
+                // Call Close when done reading.
+                reader.Close();
+
+            }
+            return GenreList;
+        }
+
         public async Task<List<GenreModel>> GetStoryGenresAsync(Guid StoryId)
         {
             List<GenreModel> GenreList = new List<GenreModel>();
@@ -164,7 +195,7 @@ namespace Stories.Repository
 
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
 
-            string queryString = "";
+            string queryString = "DELETE FROM USER_GENRE WHERE UserId = '" + UserId + "';";
 
             foreach (GenreModel genre in genreModels)
             {

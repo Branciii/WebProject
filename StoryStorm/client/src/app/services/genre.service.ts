@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { tap, catchError} from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { Genre } from '../classes/genre';
 
@@ -11,16 +10,17 @@ import { Genre } from '../classes/genre';
 })
 export class GenreService {
 
-  constructor( private http: HttpClient, private router: Router ) {  }
+  constructor( private http: HttpClient ) {  }
 
   private url : string = 'https://localhost:44374';  
 
 
   getGenres(): Observable<Genre[]> {
-    if (localStorage.getItem("userToken")==null){
-      this.router.navigate(['login']);
-    }  
-    return this.http.get<Genre[]>(this.url + '/api/getGenres');  
+    return this.http.get<Genre[]>(this.url + '/api/getOtherGenres');  
+  } 
+
+  getPickedGenres(): Observable<Genre[]> {
+    return this.http.get<Genre[]>(this.url + '/api/getUsersGenres');  
   } 
   
   savePickedGenres(pickedGenres : Array<Genre>){

@@ -33,11 +33,6 @@ namespace Stories.WebAPI.Controllers
             string UserId = RequestContext.Principal.Identity.GetUserId();
 
             List<StoryModel> StoryList = await StoryService.GetStoriesAsync(UserId);
-            if (StoryList.Count() == 0)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-            //List<Story> Stories = Mapper.Map<List<Story>>(StoryList);
 
             return Request.CreateResponse(HttpStatusCode.OK, StoryList);
         }

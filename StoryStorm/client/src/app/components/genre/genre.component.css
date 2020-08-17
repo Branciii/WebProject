@@ -26,6 +26,10 @@
   font-weight: 500;
 }
 
+#picked:hover{
+  cursor : default;
+}
+
 i{
   padding-left:12px;
   vertical-align: top;

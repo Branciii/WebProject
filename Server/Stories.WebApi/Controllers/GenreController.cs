@@ -64,10 +64,6 @@ namespace Stories.WebAPI.Controllers
             string UserId = RequestContext.Principal.Identity.GetUserId();
 
             List<GenreModel> GenreList = await GenreService.GetUsersGenresAsync(UserId);
-            if (GenreList.Count() == 0)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
 
             return Request.CreateResponse(HttpStatusCode.OK, GenreList);
         }
@@ -79,11 +75,7 @@ namespace Stories.WebAPI.Controllers
         {
             string UserId = RequestContext.Principal.Identity.GetUserId();
 
-            List<GenreModel> GenreList = await GenreService.GetUsersGenresAsync(UserId);
-            if (GenreList.Count() == 0)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
+            List<GenreModel> GenreList = await GenreService.GetOtherGenresAsync(UserId);
 
             return Request.CreateResponse(HttpStatusCode.OK, GenreList);
         }
