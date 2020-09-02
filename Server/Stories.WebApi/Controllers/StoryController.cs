@@ -10,7 +10,6 @@ using AutoMapper;
 using Stories.Service.Common;
 using Stories.Model;
 using Microsoft.AspNet.Identity;
-
 namespace Stories.WebAPI.Controllers
 {
     public class StoryController : ApiController

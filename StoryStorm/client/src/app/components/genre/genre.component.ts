@@ -25,7 +25,7 @@ export class GenreComponent implements OnInit {
       this.router.navigate(['login']);
     }  
     else{
-      this.genreService.getGenres()
+      this.genreService.getNotPickedGenres()
         .subscribe(data => {
           this.notPickedGenres = data as Genre[];
           console.log(Object.values(data));

@@ -44,7 +44,7 @@ button:active {
   transition: all 0.5s ease-in;
 }
 
-.dropdown-toggle::after {
+#navbarDropdown.dropdown-toggle::after {
     content: none;
 }
 
@@ -55,4 +55,8 @@ button:active {
 .dropdown-item:hover,
 .dropdown-item:active{
     background : rgb(236, 236, 236);
+}
+
+#navbarDropdown2{
+    padding-top : 20px;
 }

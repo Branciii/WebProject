@@ -16,6 +16,10 @@ export class GenreService {
 
 
   getGenres(): Observable<Genre[]> {
+    return this.http.get<Genre[]>(this.url + '/api/getGenres');  
+  } 
+
+  getNotPickedGenres(): Observable<Genre[]> {
     return this.http.get<Genre[]>(this.url + '/api/getOtherGenres');  
   } 
 

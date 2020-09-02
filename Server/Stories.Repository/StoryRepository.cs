@@ -36,12 +36,12 @@ namespace Stories.Repository
                 if (count > 0)
                 {
                     queryString = "SELECT DISTINCT s.StoryID, s.AuthorId, s.Title, s.Description, s.Grade, s.Finished, anu.UserName, g.GenreID, g.Name " +
-                                "FROM STORY s " +
-                                "JOIN STORY_GENRE sg ON(s.StoryID = sg.StoryId) AND(s.AuthorId != '" + UserId + "')" +
-                                "JOIN AspNetUsers anu ON(anu.id = s.AuthorId)" +
-                                "JOIN USER_GENRE ug ON(sg.GenreId = ug.GenreId) AND(ug.UserId = '" + UserId + "')" +
-                                "JOIN GENRE g ON (sg.GenreId=g.GenreID)" +
-                                "ORDER BY s.Grade";
+                                "FROM STORY s" +
+                                " JOIN STORY_GENRE sg ON(s.StoryID = sg.StoryId) AND(s.AuthorId != '" + UserId + "')" +
+                                " JOIN AspNetUsers anu ON(anu.id = s.AuthorId) JOIN USER_GENRE ug ON(sg.GenreId = ug.GenreId) AND(ug.UserId = '" + UserId + "')" +
+                                " JOIN STORY_GENRE sgg ON(s.StoryID = sgg.StoryId)" +
+                                " JOIN GENRE g ON(sgg.GenreId= g.GenreID)" +
+                                " ORDER BY s.Grade;";
                 }
                 else
                 {
@@ -49,7 +49,8 @@ namespace Stories.Repository
                                 "FROM STORY s " +
                                 "JOIN STORY_GENRE sg ON(s.StoryID = sg.StoryId) AND(s.AuthorId != '" + UserId + "')" +
                                 "JOIN AspNetUsers anu ON(anu.id = s.AuthorId) " +
-                                "JOIN GENRE g ON (sg.GenreId=g.GenreID)" +
+                                "JOIN STORY_GENRE sgg ON (s.StoryID = sgg.StoryId) " +
+                                "JOIN GENRE g ON (sgg.GenreId=g.GenreID)" +
                                 "ORDER BY s.Grade; ";
                 }
 
@@ -94,25 +95,31 @@ namespace Stories.Repository
             }
             return StoryList;
         }
+
         public async Task PostNewStoryAsync(StoryModel story)
         {
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
             string queryString =
-                "INSERT INTO STORY (StoryID, AuthorId, Title, Description) VALUES ('" + story.StoryID + "' ,'" + story.AuthorId + "' ,'" + story.Title + "' ,'" + story.Description + "');";
+                "INSERT INTO STORY (StoryID, AuthorId, Title, Description) VALUES ('" + story.StoryID + "' ,'" + story.AuthorId + "' ,@Title ,@Description);";
 
             foreach (GenreModel genre in story.Genres)
             {
                 queryString += "INSERT INTO STORY_GENRE (StoryId, GenreId) VALUES ( '" + story.StoryID + "', '" + genre.GenreID + "');" ;
             }
 
-            using (SqlConnection connection =
-                       new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand command =
-                    new SqlCommand(queryString, connection);
-                await connection.OpenAsync();
+                SqlCommand go = new SqlCommand();
 
-                SqlDataReader reader = await command.ExecuteReaderAsync();
+                await con.OpenAsync();
+                go.Connection = con;
+                go.CommandText = queryString;
+                go.Parameters.Add("@Title", SqlDbType.VarChar, -1).Value = story.Title;
+                go.Parameters.Add("@Description", SqlDbType.VarChar, -1).Value = story.Description;
+
+                SqlDataReader readIn = await go.ExecuteReaderAsync();
+
+                con.Close();
 
             }
         }

@@ -23,11 +23,7 @@
 
             <li class="nav-item" *ngIf="userService.isLoggedIn">
                 <a routerLink = "/home" class="nav-link"><button (click)="isCollapsed = !isCollapsed;" id = homeb>Home</button></a>
-            </li> 
-
-            <li class="nav-item" *ngIf="userService.isLoggedIn">
-                <a routerLink = "/read" class="nav-link"><button (click)="isCollapsed = !isCollapsed;" id = readb>Read</button></a>
-            </li> 
+            </li>
 
             <li class="nav-item dropdown" *ngIf="userService.isLoggedIn">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,9 +35,16 @@
                 </div>
             </li>
 
-            <li class="nav-item" *ngIf="userService.isLoggedIn">
-                <a routerLink = "/login" class="nav-link"><button (click)="isCollapsed = !isCollapsed; userService.isLoggedIn = false; userService.logout()" id = logoutb>Log out</button></a>
-            </li> 
+            <li class="nav-item dropdown" *ngIf="userService.isLoggedIn">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Account
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
+                    <a routerLink = "/genre" (click)="isCollapsed = !isCollapsed;" class="dropdown-item nav-link">Edit favourite genres</a>
+                    <div class="dropdown-divider"></div>
+                    <a routerLink = "/login" (click)="isCollapsed = !isCollapsed; userService.isLoggedIn = false; userService.logout()" class="dropdown-item nav-link">Log out</a>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  recommendedStories: Observable<Story[]>;  
+  recommendedStories: Story[];  
 
   storyGenres: Observable<Genre[]>;  
 
@@ -21,17 +21,17 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     if(localStorage.getItem("userToken")!=null){
-      this.recommendedStories = this.storyService.getStories();
+      this.storyService.getStories()
+      .subscribe(data => {
+        this.recommendedStories = data as Story[];
+        console.log(data);
+      })
     }
     else{
       //console.log("navigating to about");
-      this.router.navigate(['/about']);
+      this.router.navigate(['/login']);
     }
-    /*
-    this.storyService.getStories()
-      .subscribe(data => {
-        console.log(data);
-      })*/
+    
   }
 
   showStory(storyId : string){
