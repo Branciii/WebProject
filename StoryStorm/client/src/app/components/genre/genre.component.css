@@ -42,7 +42,6 @@ i:hover{
 
 #save {
   display: block;
-  margin: 0 auto;
   padding: 10px;
   padding-left : 15px;
   padding-right : 15px;
@@ -65,6 +64,31 @@ background: #6AB4A5;
 color: white;
 transition: all 0.5s ease-in;
 }
+
+#cancel {
+  display: block;
+  padding: 10px;
+  padding-left : 15px;
+  padding-right : 15px;
+  background: transparent;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-out;
+  border : 2px solid grey;
+  border-radius : 10px ;
+  padding-left : 20px;
+  padding-right : 20px;
+}
+
+#cancel:hover:enabled,
+#cancel:focus,
+#cancel:active {
+background: grey;
+transition: all 0.5s ease-in;
+}
+
 
 #title{
   font-size: 50px;

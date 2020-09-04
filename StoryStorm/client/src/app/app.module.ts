@@ -21,6 +21,7 @@ import { WriteComponent } from './components/write/write.component';
 import { ReadComponent } from './components/read/read.component';
 import { NewStoryComponent } from './components/new-story/new-story.component';
 import { EditStoryComponent } from './components/edit-story/edit-story.component';
+import { StoryComponent } from './components/story/story.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EditStoryComponent } from './components/edit-story/edit-story.component
     WriteComponent,
     ReadComponent,
     NewStoryComponent,
-    EditStoryComponent
+    EditStoryComponent,
+    StoryComponent
   ],
   imports: [
     BrowserModule,

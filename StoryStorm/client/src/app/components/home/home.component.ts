@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
       this.storyService.getStories()
       .subscribe(data => {
         this.recommendedStories = data as Story[];
-        console.log(data);
+        //console.log(data);
       })
     }
     else{
