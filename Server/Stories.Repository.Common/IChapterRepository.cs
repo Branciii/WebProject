@@ -10,8 +10,9 @@ namespace Stories.Repository.Common
     public interface IChapterRepository
     {
         Task<List<ChapterModel>> GetChaptersAsync(Guid StoryId);
-        Task<ChapterModel> GetChapterAsync(Guid StoryId, int ChapterNumber);
+        Task<ChapterModel> GetChapterAsync(Guid StoryId, string UserId);
+        Task<ChapterModel> GetChapterByNumberAsync(string UserId, Guid StoryId, int ChapterNumber);
+        Task<bool> GetIsItLastChapterAsync(Guid StoryId, int ChapterNumber);
         Task PostNewChapterAsync(ChapterModel chapterModel);
-        //Task<List<ChapterModel>> GetChapterAsync(Guid ChapterID);
     }
 }

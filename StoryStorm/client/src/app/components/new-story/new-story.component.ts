@@ -4,6 +4,7 @@ import { GenreService } from '../../services/genre.service';
 import { Observable } from 'rxjs';
 import { Genre } from '../../classes/genre';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-story',
@@ -20,7 +21,9 @@ export class NewStoryComponent implements OnInit {
 
   pickedGenres : Array<Genre>;
 
-  constructor(private storyService: StoryService, private genreService: GenreService) { }
+  StoryId : string;
+
+  constructor(private router: Router, private storyService: StoryService, private genreService: GenreService) { }
 
   ngOnInit() {
     this.pickedGenres = [];
@@ -48,7 +51,14 @@ export class NewStoryComponent implements OnInit {
     let value: any = this.storyForm.value;
     this.storyService.newStory(value.Title, value.Description, this.pickedGenres)
       .subscribe(data => {
-        console.log(data);
+        this.StoryId  = data;
+        this.write(this.StoryId);
       })
   }
+
+  write(storyId : string){
+    console.log("rite ", storyId);
+    this.router.navigate(['/write', storyId]); 
+  }
+
 }

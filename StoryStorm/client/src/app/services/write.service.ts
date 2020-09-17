@@ -11,6 +11,7 @@ import { Chapter } from '../classes/chapter';
 export class WriteService {
 
   private url : string = 'https://localhost:44374';  
+  private chapter : Chapter;
 
   constructor(private http: HttpClient, public router: Router ) { }
 
@@ -31,10 +32,11 @@ export class WriteService {
       'Something bad happened; please try again later.');
   };
 
-  newChapter(chapter : Chapter) : Observable<Chapter>{
+  newChapter(storyId : string, name : string, content : string, chapterNumber : number) : Observable<Chapter>{
+    this.chapter = {StoryId : storyId, Name : name, Content : content, ChapterNumber : chapterNumber}
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
     return this.http.post(this.url + '/api/postNewChapter',  
-      chapter, httpOptions).pipe(
+      this.chapter, httpOptions).pipe(
         catchError(this.handleError.bind(this))
         );
   }

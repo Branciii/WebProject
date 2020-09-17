@@ -29,6 +29,11 @@ export class StoryService {
     return this.http.get<Genre[]>(this.url + '/api/getStoryGenres',{params: params});  
   }
 
+  getStoryById(storyId:string): Observable<Story>{
+    let params = new HttpParams().set("StoryId",storyId);
+    return this.http.get<Story>(this.url + '/api/getStoryById',{params: params});  
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

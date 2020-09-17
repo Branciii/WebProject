@@ -23,9 +23,19 @@ namespace Stories.Service
             return await ChapterRepository.GetChaptersAsync(StoryId);
         }
 
-        public async Task<ChapterModel> GetChapterAsync(Guid StoryId, int ChapterNumber)
+        public async Task<ChapterModel> GetChapterByNumberAsync(string UserId, Guid StoryId, int ChapterNumber)
         {
-            return await ChapterRepository.GetChapterAsync(StoryId, ChapterNumber);
+            return await ChapterRepository.GetChapterByNumberAsync(UserId, StoryId, ChapterNumber);
+        }
+
+        public async Task<ChapterModel> GetChapterAsync(Guid StoryId, string UserId)
+        {
+            return await ChapterRepository.GetChapterAsync(StoryId, UserId);
+        }
+
+        public async Task<bool> GetIsItLastChapterAsync(Guid StoryId, int ChapterNumber)
+        {
+            return await ChapterRepository.GetIsItLastChapterAsync(StoryId, ChapterNumber);
         }
 
         public async Task PostNewChapterAsync(ChapterModel chapterModel)

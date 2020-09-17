@@ -2,13 +2,13 @@
     <div class="container" id = "recContainer">
         <h1 class = "lead" id = "rec">Start reading <i class="fas fa-smile pl-3"></i></h1>
         <div class="row pt-5 pl-4" id="oneStory" *ngFor="let item of recommendedStories">
-            <div class="col">
+            <div class="col" (click) = "read(item.StoryID)">
                 <div class="row">
                     <div class="col-sm-auto">
                         <div class="row">
                             <div class="col-sm-auto">
                                 <h5 *ngIf="item.Grade>0" class = "lead">{{item.Grade}} &#9733;</h5>
-                                <h5 *ngIf="item.Grade==0" class = "lead">Not ratings yet</h5>
+                                <h5 *ngIf="item.Grade==0" class = "lead">No ratings yet</h5>
                             </div>
                             <div class="col">
                                 <h4 class = "lead title">{{item.Title}} </h4>

@@ -41,7 +41,7 @@ namespace Stories.Repository
                                 " JOIN AspNetUsers anu ON(anu.id = s.AuthorId) JOIN USER_GENRE ug ON(sg.GenreId = ug.GenreId) AND(ug.UserId = '" + UserId + "')" +
                                 " JOIN STORY_GENRE sgg ON(s.StoryID = sgg.StoryId)" +
                                 " JOIN GENRE g ON(sgg.GenreId= g.GenreID)" +
-                                " ORDER BY s.Grade;";
+                                " ORDER BY s.Grade DESC;";
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace Stories.Repository
                                 "JOIN AspNetUsers anu ON(anu.id = s.AuthorId) " +
                                 "JOIN STORY_GENRE sgg ON (s.StoryID = sgg.StoryId) " +
                                 "JOIN GENRE g ON (sgg.GenreId=g.GenreID)" +
-                                "ORDER BY s.Grade; ";
+                                "ORDER BY s.Grade DESC; ";
                 }
 
                 command =
@@ -94,6 +94,53 @@ namespace Stories.Repository
                 reader.Close();
             }
             return StoryList;
+        }
+
+        public async Task<StoryModel> GetStoryByIdAsync(Guid StoryId)
+        {
+            StoryModel Story = new StoryModel();
+
+            string queryString = "SELECT s.StoryID, s.Title, s.Grade, s.Description, g.GenreID, g.Name, anu.Id, anu.UserName " +
+                "FROM STORY s " +
+                "JOIN STORY_GENRE sg ON (s.StoryID = sg.StoryId) AND (s.StoryID = '" + StoryId + "') " +
+                "JOIN GENRE g ON (sg.GenreId = g.GenreID) " +
+                "JOIN AspNetUsers anu ON (anu.Id = s.AuthorId);";
+
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
+
+
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
+            {
+                SqlCommand command =
+                    new SqlCommand(queryString, connection);
+                await connection.OpenAsync();
+
+                command =
+                    new SqlCommand(queryString, connection);
+
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                bool first = true;
+                List<GenreModel> GenreList = new List<GenreModel>();
+                while (await reader.ReadAsync())
+                {
+                    if (first)
+                    {
+                        Story.StoryID = reader.GetGuid(0);
+                        Story.Title = reader.GetString(1);
+                        Story.Grade = reader.GetInt32(2);
+                        Story.Description = reader.GetString(3);
+                        Story.AuthorId = reader.GetString(6);
+                        Story.Author = reader.GetString(7);
+                        first = false;
+
+                    }
+                    GenreList.Add(new GenreModel { GenreID = reader.GetGuid(4), Name = reader.GetString(5) });
+                }
+                reader.Close();
+            }
+            return Story;
         }
 
         public async Task PostNewStoryAsync(StoryModel story)

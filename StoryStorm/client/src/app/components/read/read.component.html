@@ -1,8 +1,13 @@
 <section style = "padding-top : 50px;">
     <div class="container">
-        <h1 id = "storyTitle">I am staying with an exchange family in Japan. Something very wrong is happening here</h1>
-        <h1 id = "chapterTitle" style = "padding-top : 50px">Chapter 4</h1>
-        <div class="p" id = "content" style = "padding-top:50px; padding-bottom: 100px;">{{chapter.Content}}</div>
+        <input (click)="otherChapter(chapter.ChapterNumber-1)" *ngIf = "chapter.ChapterNumber!=1" type="button" value="Previous Chapter" style="float: left;">
+    </div>
+    <div class="container pt-4">
+        <div id = read_border class = "mt-5 mb-5 pr-5 pl-5">
+            <h1 class = "lead" id = "chapterTitle" style = "padding-top : 50px">{{chapter.Name}}</h1>
+            <div class="p lead" id = "content" style = "padding-top:50px; padding-bottom: 100px;">{{chapter.Content}}</div>
+        </div>
+        <input (click)="otherChapter(chapter.ChapterNumber+1)" *ngIf ="!last" type="button" value="Next Chapter" style="float: right;" class = "mb-5">
     </div>
 </section>
     

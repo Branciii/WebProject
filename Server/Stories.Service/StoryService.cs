@@ -22,6 +22,11 @@ namespace Stories.Service
             return await StoryRepository.GetStoriesAsync(UserId);
         }
 
+        public async Task<StoryModel> GetStoryByIdAsync(Guid StoryId)
+        {
+            return await StoryRepository.GetStoryByIdAsync(StoryId);
+        }
+
         public async Task PostNewStoryAsync(StoryModel story)
         {
             await StoryRepository.PostNewStoryAsync(story);

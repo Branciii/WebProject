@@ -39,4 +39,8 @@ export class HomeComponent implements OnInit {
     console.log(storyId);
   }
 
+  read(storyId : string){
+    this.router.navigate(['/read', storyId]); 
+  }
+
 }

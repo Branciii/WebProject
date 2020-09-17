@@ -36,6 +36,14 @@ namespace Stories.WebAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, StoryList);
         }
 
+        [HttpGet]
+        [Authorize]
+        [Route("api/getStoryById")]
+        public async Task<HttpResponseMessage> GetStoryByIdAsync(Guid StoryId)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, await StoryService.GetStoryByIdAsync(StoryId));
+        }
+
         /*
         [HttpGet]
         [Authorize]
@@ -70,7 +78,7 @@ namespace Stories.WebAPI.Controllers
 
             await StoryService.PostNewStoryAsync(storyModel);
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, obj);
         }
     }
 }

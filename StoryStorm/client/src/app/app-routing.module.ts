@@ -17,8 +17,8 @@ const routes: Routes = [
   {path : 'register', component : RegisterComponent},
   {path : 'genre', component : GenreComponent},
   {path : 'home', component : HomeComponent},
-  {path : 'write', component : WriteComponent},
-  {path : 'read', component : ReadComponent},
+  {path : 'write/:StoryId', component : WriteComponent},
+  {path : 'read/:StoryId', component : ReadComponent},
   {path : 'new-story', component : NewStoryComponent},
   {path : 'edit-story', component : EditStoryComponent}
 ];

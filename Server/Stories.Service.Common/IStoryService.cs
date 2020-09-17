@@ -10,6 +10,7 @@ namespace Stories.Service.Common
     public interface IStoryService
     {
         Task<List<StoryModel>> GetStoriesAsync(string UserId);
+        Task<StoryModel> GetStoryByIdAsync(Guid StoryID);
         Task PostNewStoryAsync(StoryModel story);
     }
 }

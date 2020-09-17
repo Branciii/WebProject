@@ -44,13 +44,69 @@ namespace Stories.Repository
             return ChapterList;
         }
 
-        public async Task<ChapterModel> GetChapterAsync(Guid StoryId, int ChapterNumber)
+        public async Task<ChapterModel> GetChapterAsync(Guid StoryId, string UserId)
+        {
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
+            ChapterModel chapterModel = new ChapterModel();
+
+            string checkExistence =
+            "SELECT COUNT(*) as count FROM USER_STORY WHERE UserId = '" + UserId + "' AND StoryId = '" + StoryId + "';";
+            
+
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
+            {
+                string queryString = "";
+
+                SqlCommand command =
+                    new SqlCommand(checkExistence, connection);
+                await connection.OpenAsync();
+
+                int Count = (int)await command.ExecuteScalarAsync();
+                if (Count == 0)
+                {
+                    queryString = 
+                        "INSERT INTO USER_STORY (UserId, StoryId, ChapterNumber) VALUES ('" + UserId +"','" + StoryId + "'," + 1 + "); "+
+                        "SELECT ChapterID, StoryId, Name, ChapterNumber, Content FROM CHAPTER WHERE (ChapterNumber = 1)" +
+                        "AND (StoryId = '" + StoryId + "');";
+                }
+                else
+                {
+                    queryString = "SELECT c.ChapterID, c.StoryId, c.Name, c.ChapterNumber, c.Content " +
+                                    "FROM CHAPTER c JOIN USER_STORY us " +
+                                    "ON (c.StoryId = us.StoryId) " +
+                                    "AND (c.StoryId = '" + StoryId + "')" +
+                                    "AND(us.UserId = '" + UserId + "') " +
+                                    "AND(us.ChapterNumber = c.ChapterNumber); ";
+                }
+
+                command =
+                    new SqlCommand(queryString, connection);
+
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                while (await reader.ReadAsync())
+                {
+                    chapterModel.ChapterID = reader.GetGuid(0);
+                    chapterModel.StoryId = reader.GetGuid(1);
+                    chapterModel.Name = reader.GetString(2);
+                    chapterModel.ChapterNumber = reader.GetInt32(3);
+                    chapterModel.Content = reader.GetString(4);
+                }
+
+                reader.Close();
+            }
+            return chapterModel;
+        }
+
+        public async Task<ChapterModel> GetChapterByNumberAsync(string UserId, Guid StoryId, int ChapterNumber)
         {
             ChapterModel chapterModel = new ChapterModel();
 
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
 
             string queryString =
+                "UPDATE USER_STORY SET ChapterNumber = " + ChapterNumber + " WHERE (UserId = '" + UserId + "') AND (StoryId = '" + StoryId +  "'); " +
                 "SELECT * FROM CHAPTER WHERE StoryId = '" + StoryId + "' AND ChapterNumber = " + ChapterNumber + ";";
 
             using (SqlConnection connection =
@@ -79,9 +135,31 @@ namespace Stories.Repository
             return chapterModel;
         }
 
+        public async Task<bool> GetIsItLastChapterAsync(Guid StoryId, int ChapterNumber)
+        {
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
+
+            string queryString = "SELECT MAX(c.ChapterNumber) FROM CHAPTER c WHERE StoryId = '" + StoryId + "' AND (c.Content IS NOT NULL);";
+
+            using (SqlConnection connection =
+                       new SqlConnection(connectionString))
+            {
+                SqlCommand command =
+                    new SqlCommand(queryString, connection);
+                await connection.OpenAsync();
+
+                int Max = (int)await command.ExecuteScalarAsync();
+
+                if (Max == ChapterNumber)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public async Task PostNewChapterAsync(ChapterModel chapterModel)
         {
-            //mozda dodati da prvo provjeri postoji li priča, ali valjda neće moći ni doći do tog na frontendu da pošalje ovaj zahtjev
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebProject;Integrated Security=True";
 
             using (SqlConnection con = new SqlConnection(connectionString))
